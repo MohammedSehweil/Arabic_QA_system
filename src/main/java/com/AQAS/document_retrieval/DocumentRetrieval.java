@@ -1,4 +1,4 @@
-package com.document_retrieval.zma;
+package com.AQAS.document_retrieval;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -6,27 +6,28 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DocumentRetrieval {
 
 
-    private ArrayList<String> _getLinksOnePage(String searchQuery, int page, String link, String pageVariableName, String selector, String regex) {
+    private ArrayList<String> _getLinksOnePage(String generatedSearchURL, Website website) {
         Document doc = null;
         try {
-            doc = Jsoup.connect(link + searchQuery + "&" + pageVariableName + "=" + page).get();
+            doc = Jsoup.connect(generatedSearchURL).get();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Elements newsHeadlines = doc.select(selector);
+        Elements newsHeadlines = doc.select(website.selector);
 
         String result = newsHeadlines.toString();
 
 
         //regex to extract links
         Pattern urlPattern = Pattern.compile(
-                regex,
+                website.regex,
                 Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
         Matcher matcher = urlPattern.matcher(result);
 
@@ -45,10 +46,11 @@ public class DocumentRetrieval {
     /*
         generic function to get documents links
      */
-    public ArrayList<String> getLinks(String searchQuery, int numPages, String link,String pageVariableName ,String selector, String regex) {
+    public ArrayList<String> getLinks(Website website, HashMap<String,Object> searchAttr) {
         ArrayList<String> allLinks = new ArrayList<String>();
-        for (int i = 0; i <= numPages; i++) {
-            allLinks.addAll(_getLinksOnePage(searchQuery,i,link,pageVariableName, selector, regex));
+        for (int i = 0; i <= (Integer)searchAttr.get("searchNumOfPages"); i++) {
+            String generatedSearchURL = website.searchLink + (String)searchAttr.get("searchQuery") + "&" + website.pageVariableName + "=" + i;
+            allLinks.addAll(_getLinksOnePage(generatedSearchURL,website));
         }
         return allLinks;
     }
