@@ -5,17 +5,19 @@ import java.util.Arrays;
 
 public final  class Config {
 
+    public static final boolean VERBOS = true;
     public static final ArrayList<Website> webSites = new ArrayList<Website>(Arrays.asList(
             new Website("http://www.doctoori.net/search/?word=",
                     "pg",
-                    ".content-main a.btn-primary",
-                    "href=\"([^\"]*)\"",
-                    true),
-            new Website("http://www.doctoori.net/search/?word=",
-                    "pg",
-                    ".content-main a.btn-primary",
-                    "href=\"([^\"]*)\"",
+                    "a.btn-primary",
+                    0,
                     true)
+            ,new Website("https://www.webteb.com/search?q=",
+                    "page",//no page
+                    "div.gsc-table-cell-thumbnail a.gs-title",
+                    1,
+                    true)
+
     ));
 
 

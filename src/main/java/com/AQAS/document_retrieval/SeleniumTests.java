@@ -22,10 +22,9 @@ public class SeleniumTests {
         WebDriver driver = new PhantomJSDriver(caps);
 
         // And now use this to visit Google
-        driver.get("https://www.webteb.com/search?q=%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D9%8A");
+        driver.get("http://www.doctoori.net/search/?word=%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D9%8A&pg=0");
 
-
-        List<WebElement> refList = driver.findElements(By.cssSelector("div.gsc-table-cell-thumbnail a.gs-title"));
+        List<WebElement> refList = driver.findElements(By.cssSelector("a.btn-primary"));
 
         //to remove null (elements that have the selector but doesn't have href)
         Iterator<WebElement> i = refList.iterator();

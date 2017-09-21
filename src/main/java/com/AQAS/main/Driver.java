@@ -3,12 +3,11 @@ package com.AQAS.main;
 
 import com.AQAS.document_retrieval.Config;
 import com.AQAS.document_retrieval.DocumentRetrieval;
-import com.AQAS.document_retrieval.Website;
+import com.AQAS.document_retrieval.Helpers;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class Driver {
 
@@ -23,10 +22,13 @@ public class Driver {
         searchAttr.put("searchQuery","السكري");
         searchAttr.put("searchNumOfPages",2);
 
-
-        for (Website website:Config.webSites) {
-
-            searchResultURLs.addAll(new DocumentRetrieval().getLinks(website,searchAttr));
+        searchResultURLs = new DocumentRetrieval().getLinksFromAllWebsites(searchAttr);
+        if (Config.VERBOS) {
+            System.out.println("All Links:");
+            for (String s : searchResultURLs) {
+                System.out.println(s);
+            }
         }
+
     }
 }
