@@ -1,4 +1,4 @@
 package com.document_retrieval.zma;
 
-public class config {
+public final  class config {
 }

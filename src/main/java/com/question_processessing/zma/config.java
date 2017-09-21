@@ -1,4 +1,4 @@
 package com.question_processessing.zma;
 
-public class config {
+public final  class config {
 }

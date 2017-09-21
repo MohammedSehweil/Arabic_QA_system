@@ -1,4 +1,4 @@
 package com.answer_extraction.zma;
 
-public class config {
+public final class config {
 }
