@@ -22,21 +22,20 @@ public class SeleniumTests {
         WebDriver driver = new PhantomJSDriver(caps);
 
         // And now use this to visit Google
-        driver.get("http://www.doctoori.net/search/?word=%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D9%8A&pg=0");
+        driver.get("https://www.webteb.com/search?q=%D8%A7%D9%84%D8%B3%D9%83%D8%B1%D9%8A");
 
-        List<WebElement> refList = driver.findElements(By.cssSelector("a.btn-primary"));
+        try {
+            WebElement showMoreButton = driver.findElement(By.className("showMore"));
+            showMoreButton.click();
+        }
+        catch (Exception e){
+            ;
+        }
 
+        WebElement we = driver.findElement(By.tagName("body"));
+
+        System.out.println(we.getText());
         //to remove null (elements that have the selector but doesn't have href)
-        Iterator<WebElement> i = refList.iterator();
-        while (i.hasNext()) {
-            WebElement s = i.next(); // must be called before you can call i.remove()
-            if(s.getAttribute("href") == null)
-                i.remove();
-        }
-        for (WebElement we: refList ) {
-            System.out.println(we.getAttribute("href"));
-        }
-        //Close the browser
         driver.quit();
 
     }

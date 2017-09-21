@@ -11,12 +11,13 @@ public final  class Config {
                     "pg",
                     "a.btn-primary",
                     0,
-                    true)
+                    "div#condition-content"
+                    )
             ,new Website("https://www.webteb.com/search?q=",
                     "page",//no page
                     "div.gsc-table-cell-thumbnail a.gs-title",
                     1,
-                    true)
+                    "div.main-content")
 
     ));
 
