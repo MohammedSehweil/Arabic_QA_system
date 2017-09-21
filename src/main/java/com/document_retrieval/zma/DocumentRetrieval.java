@@ -1,4 +1,4 @@
-package com.exmaple.aqs;
+package com.document_retrieval.zma;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,9 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DocumentRetrieval {
-
-
-
 
 
     private ArrayList<String> _getLinksOnePage(String searchQuery, int page, String link, String pageVariableName, String selector, String regex) {
