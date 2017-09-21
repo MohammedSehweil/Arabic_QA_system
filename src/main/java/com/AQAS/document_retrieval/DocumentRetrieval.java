@@ -54,7 +54,8 @@ public class DocumentRetrieval {
         int startPage = website.searchPageOffset;
         int endPage = (Integer) searchAttr.get("searchNumOfPages") + website.searchPageOffset;
         for (int i = startPage; i < endPage; i++) {
-            String generatedSearchURL = website.searchLink + URLEncoder.encode((String) searchAttr.get("searchQuery"), "UTF-8") + "&" + website.pageVariableName + "=" + i;
+            System.out.println("->"+website.generateSearchLink((String) searchAttr.get("searchQuery"),i));
+            String generatedSearchURL = website.generateSearchLink((String) searchAttr.get("searchQuery"),i);
             allLinks.addAll(_getLinksOnePage(generatedSearchURL, website, driver));
         }
         return allLinks;
@@ -77,6 +78,25 @@ public class DocumentRetrieval {
         Helpers.closeWebDriver(driver);
 
         return Helpers.removeDuplicates(searchResultURLs);
+    }
+
+    public void getDocument(String URL){
+        WebDriver driver =Helpers.openWebDriver();
+        driver.get(URL);
+        try {
+            WebElement showMoreButton = driver.findElement(By.className("showMore"));
+            showMoreButton.click();
+        }
+        catch (Exception e){
+        }
+
+        WebElement we = driver.findElement(By.tagName("body"));
+
+        System.out.println(we.getText());
+
+        Helpers.closeWebDriver(driver);
+
+
     }
 
 
