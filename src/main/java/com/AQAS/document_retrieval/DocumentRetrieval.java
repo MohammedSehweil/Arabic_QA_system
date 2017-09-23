@@ -54,7 +54,7 @@ public class DocumentRetrieval {
         int startPage = website.searchPageOffset;
         int endPage = (Integer) searchAttr.get("searchNumOfPages") + website.searchPageOffset;
         for (int i = startPage; i < endPage; i++) {
-            System.out.println("->"+website.generateSearchLink((String) searchAttr.get("searchQuery"),i));
+            System.out.println("Link Requested->"+website.generateSearchLink((String) searchAttr.get("searchQuery"),i));
             String generatedSearchURL = website.generateSearchLink((String) searchAttr.get("searchQuery"),i);
             allLinks.addAll(_getLinksOnePage(generatedSearchURL, website, driver));
         }
