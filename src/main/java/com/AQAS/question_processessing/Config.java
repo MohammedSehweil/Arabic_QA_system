@@ -1,4 +1,4 @@
 package com.AQAS.question_processessing;
 
-public final  class config {
+public final  class Config {
 }

@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="Maven: com.google.code.findbugs:jsr305:1.3.9">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/AraNLP/AraNLP/lib/stanford-segmenter-2012-07-09-doc.jar!/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9-sources.jar!/" />
+      <root url="file://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9" />
+      <root url="jar://$USER_HOME$/Desktop/AraNLP/AraNLP/lib/stanford-segmenter-2012-07-09-src.jar!/" />
+      <root url="file://$USER_HOME$/Desktop/AraNLP/AraNLP/src" />
+      <root url="file://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9" />
+      <root url="file://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9" />
+    </SOURCES>
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9" recursive="false" type="SOURCES" />
+  </library>
+</component>
