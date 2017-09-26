@@ -1,4 +1,4 @@
 package com.AQAS.answer_extraction;
 
-public final class Config {
+public final class ConfigA {
 }
