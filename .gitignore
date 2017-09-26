@@ -1,4 +1,8 @@
-.idea
 target
-/1.iml
-/phantomjsdriver.log
+.idea
+.idea/Arabic_QA_system.iml
+.idea/libraries/
+.idea/workspace.xml
+1.iml
+exec/
+target/
