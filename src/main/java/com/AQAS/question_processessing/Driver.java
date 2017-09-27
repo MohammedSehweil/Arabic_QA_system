@@ -7,7 +7,7 @@ public class Driver {
     // execution starts here
     public static void main(String[] args) {
         // create the stemmer
-        String query = "ما هي أعراض مرض السكري؟";
+        String query = "ما هي أعراض مرض السكري القوي ؟";
         HashMap<String, String> out = QuestionPreprocessing.preProcessInput(query);
         System.out.println("input query : " + query);
         System.out.println("normalized  query : " +out.get(ConfigP.Keys.NormalizedText));

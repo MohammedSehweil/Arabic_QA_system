@@ -335,6 +335,7 @@ public class Stem
 
     private void readQuery(String Query)
     {
+        Query = Query + " ?";
         StringBuffer word = new StringBuffer ( );
         Character character;
         String currentWord;
@@ -358,7 +359,7 @@ public class Stem
                         word.append ( Query.charAt ( i ) );
                     }
                     // otherwise, if the word contains some characters, add it to the vector
-                    else
+                    else if ( ( character = new Character ( Query.charAt ( i ) ) ).isWhitespace ( Query.charAt ( i ) ) || i == Query.length()-1)
                     {
                         if ( word.length ( ) != 0 )
                         {
@@ -368,7 +369,6 @@ public class Stem
                     }
 
                 }
-
                 // now we have tokenized one line, we should stem it
                 for ( int i = 0; i < tokenizedLine.size ( ); i++ )
                 {

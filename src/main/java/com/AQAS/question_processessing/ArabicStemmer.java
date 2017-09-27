@@ -397,9 +397,9 @@ public class ArabicStemmer
                         tempStringBuffer.append ( "[ " + ( String ) stemmedWords.elementAt ( index ) + " : " + ( String ) rootsFound.elementAt ( index ) + " ]    " );
                         tempStringBuffer1.append ( ( String ) rootsFound.elementAt ( index ) + " " );
                     }
-                FileOutputStream fileOutputStream = new FileOutputStream ("C:\\Users\\Click Team\\Desktop\\Khoja\\ArabicTexts\\out.txt");
-                Writer writer = new OutputStreamWriter ( fileOutputStream);
-                System.out.println("Normalized Stemmed text: "+tempStringBuffer1.toString ( ));
+//                FileOutputStream fileOutputStream = new FileOutputStream ("C:\\Users\\Click Team\\Desktop\\Khoja\\ArabicTexts\\out.txt");
+//                Writer writer = new OutputStreamWriter ( fileOutputStream);
+//                System.out.println("Normalized Stemmed text: "+tempStringBuffer1.toString ( ));
 //                writer.write ( tempStringBuffer.toString ( ) );
 //                writer.close ( );
 //                    arabicStemmerGUI.statisticsWindow.stemmedWordsTextArea.setText ( tempStringBuffer.toString ( ) );
@@ -417,7 +417,7 @@ public class ArabicStemmer
                         tempStringBuffer.append ( ( String ) notStemmedWords.elementAt ( index ) + "    " );
                         tempStringBuffer2.append ( ( String ) notStemmedWords.elementAt ( index ) + "    " );
                     }
-                    System.out.println("Not Stemmed Word:" + tempStringBuffer2.toString());
+//                    System.out.println("Not Stemmed Word:" + tempStringBuffer2.toString());
 //                    arabicStemmerGUI.statisticsWindow.wordsNotStemmedTextArea.setText ( tempStringBuffer.toString ( ) );
 //                    arabicStemmerGUI.statisticsWindow.wordsNotStemmedTextArea.setCaretPosition ( 0 );
 
@@ -434,7 +434,7 @@ public class ArabicStemmer
                         tempStringBuffer.append ( "[ " + ( String ) originalStopword.elementAt ( index ) + " : " + ( String ) stopwordsFound.elementAt ( index ) + " ]    " );
                         tempStringBuffer3.append ( ( String ) stopwordsFound.elementAt ( index ) + " " );
                     }
-                    System.out.println("Stop Words Found: "+ tempStringBuffer3.toString());
+//                    System.out.println("Stop Words Found: "+ tempStringBuffer3.toString());
 //                    arabicStemmerGUI.statisticsWindow.stopwordsTextArea.setText ( tempStringBuffer.toString ( ) );
 //                    arabicStemmerGUI.statisticsWindow.stopwordsTextArea.setCaretPosition ( 0 );
 
@@ -451,8 +451,8 @@ public class ArabicStemmer
                             tempStringBuffer.append ( "[ " + unstemmedTextPossibleRoots [ index ] [ 0 ] + " : " + unstemmedTextPossibleRoots [ index ] [ 1 ] + " ]    " );
                         }
                     }
-                writer.write ( tempStringBuffer.toString ( ) );
-                writer.close ( );
+//                writer.write ( tempStringBuffer.toString ( ) );
+//                writer.close ( );
 //                    arabicStemmerGUI.rootsWindow.textArea.setText ( tempStringBuffer.toString ( ) );
 //                    arabicStemmerGUI.rootsWindow.textArea.setCaretPosition ( 0 );
 
@@ -790,7 +790,7 @@ public class ArabicStemmer
     protected void readInStaticFiles ( )
     {
         // create a string buffer containing the path to the static files
-        String pathToStemmerFiles = new StringBuffer ( System.getProperty ( "user.dir" ) + System.getProperty ( "file.separator" ) + "StemmerFiles" + System.getProperty ( "file.separator" ) ).toString ( );
+        String pathToStemmerFiles = new StringBuffer ( System.getProperty ( "user.dir" ) + System.getProperty ( "file.separator" ) + "src"  + System.getProperty ( "file.separator" ) + "main" +System.getProperty ( "file.separator" ) + "java" + System.getProperty ( "file.separator" ) + "com" + System.getProperty ( "file.separator" ) + "AQAS" + System.getProperty ( "file.separator" ) + "question_processessing" + System.getProperty ( "file.separator" ) + "StemmerFiles" +System.getProperty ( "file.separator" ) ).toString ( );
 
         // create the vector composed of vectors containing the static files
         staticFiles = new Vector ( );
@@ -815,7 +815,7 @@ public class ArabicStemmer
         if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "strange.txt" ).toString ( ) ) )
         {
             // the vector was successfully created
-            System.out.println( "read in files successfully" );
+//            System.out.println( "read in files successfully" );
         }
     }
 
