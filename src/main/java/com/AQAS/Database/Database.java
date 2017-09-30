@@ -92,6 +92,12 @@ public class Database {
 
     }
 
+
+
+    public static void insertForm(String query){
+
+
+    }
     public static void closeConnection() {
         try {
             if (rs != null) rs.close();
