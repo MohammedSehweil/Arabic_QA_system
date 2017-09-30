@@ -7,5 +7,5 @@ public final class ConfigM {
     public static final boolean VERBOS = true;
 
     public final static String query ="ما هي أعراض مرض السكري؟";
-    public final static int searchNumOfPages = 2;
+    public final static int searchNumOfPages = 1;
 }

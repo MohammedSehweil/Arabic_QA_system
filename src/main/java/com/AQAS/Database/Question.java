@@ -1,28 +1,29 @@
 package com.AQAS.Database;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static com.AQAS.Database.HelpersDB.props;
 
-public class Document {
+public class Question  {
 
     int id;
-    String link;
     String text;
-    int form_id;
+    ArrayList<Form> forms;
 
-    public Document(String link, String text) {
-        this.link = link;
+
+    public Question(String text, ArrayList<Form> forms) {
         this.text = text;
+        this.forms = forms;
     }
 
-    public int store(){
+    public int store() {
         try {
-            org.jsoup.nodes.Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP")+"forms/document/"+this.form_id)
+            Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP")+"questions")
                     .data("text", this.text)
-                    .data("link",this.link)
                     .userAgent("Mozilla")
                     .post();
             return Integer.parseInt(doc.text());
@@ -31,5 +32,13 @@ public class Document {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    public Question get(){
+        return null;
+    }
+
+    public ArrayList<Question> getForms(){
+        return null;
     }
 }

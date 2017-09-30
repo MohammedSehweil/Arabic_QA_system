@@ -1,9 +1,13 @@
 package com.AQAS.document_retrieval;
 
 import org.json.simple.parser.ParseException;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -42,8 +46,13 @@ public class DocumentRetrieval {
      *
      * @param URL
      */
-    public void getDocument(String URL) {
+    public static String getDocument(String URL) {
         WebDriver driver = HelpersD.openWebDriver();
+//        WebDriverWait wait = new WebDriverWait(driver,2);
+//        wait.until(ExpectedConditions.alertIsPresent());
+//        Alert alert = driver.switchTo().alert();
+//        alert.accept();
+
         driver.get(URL);
         try {
             WebElement showMoreButton = driver.findElement(By.className("showMore"));
@@ -57,6 +66,7 @@ public class DocumentRetrieval {
 
         HelpersD.closeWebDriver(driver);
 
+        return "هيهيهي";
 
     }
 
