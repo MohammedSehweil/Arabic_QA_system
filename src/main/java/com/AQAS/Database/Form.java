@@ -15,14 +15,21 @@ public class Form {
     ArrayList<Document> documents;
 
 
-    public Form( String text) {
+    public Form() {
+    }
+
+    public Form(int id) {
+        this.id = id;
+    }
+
+    public Form(String text) {
         this.text = text;
     }
 
 
     public int store() {
         try {
-            org.jsoup.nodes.Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP")+"forms/"+this.question_id)
+            org.jsoup.nodes.Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP") + "forms/" + this.question_id)
                     .data("text", this.text)
                     .userAgent("Mozilla")
                     .post();
@@ -38,8 +45,16 @@ public class Form {
         return null;
     }
 
-    public ArrayList<Document> getDocuments()
-    {
-        return null;
+    public ArrayList<Document> getDocuments() {
+        try {
+            System.out.println(this.id);
+            String json = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP") + "/forms/document/" + this.id).ignoreContentType(true).execute().body();
+            System.out.println(json);
+            return null;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

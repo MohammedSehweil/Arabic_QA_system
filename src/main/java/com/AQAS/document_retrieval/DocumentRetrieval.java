@@ -62,11 +62,11 @@ public class DocumentRetrieval {
 
         WebElement we = driver.findElement(By.tagName("body"));
 
-        System.out.println(we.getText());
 
+        String documentText = we.getText();
         HelpersD.closeWebDriver(driver);
 
-        return "هيهيهي";
+        return documentText;
 
     }
 

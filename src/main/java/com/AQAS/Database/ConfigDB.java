@@ -11,12 +11,11 @@ public class ConfigDB {
                             new Form("ما هي أعراض السكري"),
                             new Form("اذكر أعراض السكري")
 
-                            ))),
+                    ))),
             new Question("مدة علاج السعال",
                     new ArrayList<Form>(Arrays.asList(
                             new Form("كم هي مدة علاج السعال"),
                             new Form("ما هي المدة اللازمة للشفاء من مرض السعال")
-
                     )))
 
 
