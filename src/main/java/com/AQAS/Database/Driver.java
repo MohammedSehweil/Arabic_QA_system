@@ -8,19 +8,10 @@ public class Driver {
     public static void main(String[] args) {
         intializeProb();
 //        storeTestingData();
-        Form f = new Form(31);
-        f.getDocuments();
-        System.exit(1);
-        Boolean dataBaseCreated = false;
+//        Form f = new Form(31);
+//        f.getDocuments();
+//        System.out.println(f);
 
-        if(dataBaseCreated){
-            Database.connect();
-            //work can be done here
-        }
-        else {
-            Database.createDataBase();
-            Database.createTables();
-        }
 
     }
 

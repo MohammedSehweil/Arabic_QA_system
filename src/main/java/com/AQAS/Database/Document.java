@@ -18,6 +18,19 @@ public class Document {
         this.text = text;
     }
 
+    public Document(String link, String text, int form_id) {
+        this.link = link;
+        this.text = text;
+        this.form_id = form_id;
+    }
+
+    public Document(int id, String link, String text, int form_id) {
+        this.id = id;
+        this.link = link;
+        this.text = text;
+        this.form_id = form_id;
+    }
+
     public int store(){
         try {
             org.jsoup.nodes.Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP")+"forms/document/"+this.form_id)
@@ -31,5 +44,15 @@ public class Document {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" +
+                "id=" + id +
+                ", link='" + link + '\'' +
+                ", text='" + text + '\'' +
+                ", form_id=" + form_id +
+                "}\n";
     }
 }

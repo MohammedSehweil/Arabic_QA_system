@@ -46,13 +46,8 @@ public class DocumentRetrieval {
      *
      * @param URL
      */
-    public static String getDocument(String URL) {
+    public static String retrieveDocumentText(String URL) {
         WebDriver driver = HelpersD.openWebDriver();
-//        WebDriverWait wait = new WebDriverWait(driver,2);
-//        wait.until(ExpectedConditions.alertIsPresent());
-//        Alert alert = driver.switchTo().alert();
-//        alert.accept();
-
         driver.get(URL);
         try {
             WebElement showMoreButton = driver.findElement(By.className("showMore"));

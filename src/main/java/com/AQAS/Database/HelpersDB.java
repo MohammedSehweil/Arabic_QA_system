@@ -6,17 +6,15 @@ import com.AQAS.question_processessing.ConfigP;
 import com.AQAS.question_processessing.QuestionPreprocessing;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import static com.AQAS.document_retrieval.DocumentRetrieval.getDocument;
+import static com.AQAS.document_retrieval.DocumentRetrieval.retrieveDocumentText;
 
 
 public class HelpersDB {
 
-    public static Properties props = null;
+    public static  Properties props = null;
 
     public static void storeTestingData() {
         intializeProb();
@@ -30,7 +28,7 @@ public class HelpersDB {
                 int form_id = form.store();
                 ArrayList<String> searchResultURLs = HelpersD.getLinks(form.text, ConfigM.searchNumOfPages);
                 for (String url : searchResultURLs) {
-                    String documentText = getDocument(url);
+                    String documentText = retrieveDocumentText(url);
                     Document newDoc = new Document(url, documentText);
                     newDoc.form_id = form_id;
 
@@ -57,4 +55,7 @@ public class HelpersDB {
         }
 
     }
+
+
+
 }
