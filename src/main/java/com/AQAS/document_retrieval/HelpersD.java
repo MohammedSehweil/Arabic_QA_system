@@ -9,6 +9,8 @@ import java.util.*;
 
 public final class HelpersD {
 
+    public static WebDriver driver ;
+
     public static ArrayList<String> removeDuplicates(ArrayList<String> a) {
         ArrayList<String> al = a;
         // add elements to al, including duplicates
@@ -20,16 +22,16 @@ public final class HelpersD {
         return al;
     }
 
-    public static WebDriver openWebDriver() {
+    public static void openWebDriver() {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true);
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, System.getProperty("user.dir") + "/exec/phantomjs.exe");
-        WebDriver driver = new PhantomJSDriver(caps);
+         driver = new PhantomJSDriver(caps);
 
-        return driver;
     }
 
-    public static void closeWebDriver(WebDriver driver) {
+    public static void closeWebDriver() {
+
         driver.close();
     }
 

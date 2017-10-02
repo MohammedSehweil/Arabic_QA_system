@@ -12,6 +12,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
 
+import static com.AQAS.document_retrieval.HelpersD.driver;
+
 public class Website {
 
     public String websiteName;
@@ -39,7 +41,7 @@ public class Website {
     }
 
 
-    public ArrayList<String> _getLinksOnePage(String generatedSearchURL, WebDriver driver) throws ParseException {
+    public ArrayList<String> _getLinksOnePage(String generatedSearchURL) throws ParseException {
 
         //GET request
         driver.get(generatedSearchURL);
@@ -64,7 +66,7 @@ public class Website {
     /*
         generic function to get documents links
      */
-    public ArrayList<String> getLinks(HashMap<String, Object> searchAttr, WebDriver driver) throws UnsupportedEncodingException, ParseException {
+    public ArrayList<String> getLinks(HashMap<String, Object> searchAttr) throws UnsupportedEncodingException, ParseException {
         ArrayList<String> allLinks = new ArrayList<String>();
 
         int startPage = this.searchPageOffset;
@@ -72,7 +74,7 @@ public class Website {
         for (int i = startPage; i < endPage; i++) {
             System.out.println("Link Requested->" + this.generateSearchLink((String) searchAttr.get("searchQuery"), i));
             String generatedSearchURL = this.generateSearchLink((String) searchAttr.get("searchQuery"), i);
-            allLinks.addAll(_getLinksOnePage(generatedSearchURL, driver));
+            allLinks.addAll(_getLinksOnePage(generatedSearchURL));
         }
         return allLinks;
     }
@@ -136,7 +138,7 @@ class Google extends Website {
     }
 
     @Override
-    public ArrayList<String> _getLinksOnePage(String generatedSearchURL, WebDriver driver) throws ParseException {
+    public ArrayList<String> _getLinksOnePage(String generatedSearchURL) throws ParseException {
 
         ArrayList<String> links = new ArrayList<String>();
 
