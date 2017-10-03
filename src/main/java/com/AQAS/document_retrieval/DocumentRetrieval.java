@@ -19,7 +19,6 @@ public class DocumentRetrieval {
 
 
     /**
-     *
      * @param searchAttr
      * @return Array list for all links in all websites
      */
@@ -41,7 +40,6 @@ public class DocumentRetrieval {
     }
 
     /**
-     *
      * @param URL
      */
     public static String retrieveDocumentText(String URL) {

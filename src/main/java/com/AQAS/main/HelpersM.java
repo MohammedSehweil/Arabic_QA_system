@@ -12,14 +12,14 @@ import java.util.HashMap;
 
 public class HelpersM {
 
-    public static Form retrieveDocuments(int form_id){
+    public static Form retrieveDocuments(int form_id) {
         Form form = new Form(form_id);
         form.getDocuments();
         return form;
     }
 
 
-    public static Form retrieveDocuments(String query_string){
+    public static Form retrieveDocuments(String query_string) {
         HashMap<String, String> out = QuestionPreprocessing.preProcessInput(ConfigM.query);
 
         Form form = new Form(query_string);
@@ -30,11 +30,11 @@ public class HelpersM {
             System.out.println("All Links:");
         }
         for (String url : searchResultURLs) {
-            if(ConfigM.VERBOS){
+            if (ConfigM.VERBOS) {
                 System.out.println(url);
             }
             String text = DocumentRetrieval.retrieveDocumentText(url);
-            form.documents.add(new Document(url,text));
+            form.documents.add(new Document(url, text));
 
         }
         return form;

@@ -36,8 +36,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class ArabicStemmer
-{
+public class ArabicStemmer {
     //--------------------------------------------------------------------------
 
     // the gui
@@ -50,18 +49,18 @@ public class ArabicStemmer
     protected boolean currentInputFilePanelFileNeedsSaving = false;
     protected File currentInputFilePanelFile;
 
-    protected  String query ;
+    protected String query;
 
     // the statistics for the stemmed text
-    protected int [ ] stemmedTextStatistics;
+    protected int[] stemmedTextStatistics;
 
     // the stemmed words, roots found, words not stemmed, and stopwords for the
     // stemmed text
-    protected Vector stemmedTextLists = new Vector ( );
+    protected Vector stemmedTextLists = new Vector();
 
     // the possible roots for any unstemmed text
     protected int unstemmedTextNumberOfPossibleRoots;
-    protected String [ ] [ ] unstemmedTextPossibleRoots;
+    protected String[][] unstemmedTextPossibleRoots;
 
     //--------------------------------------------------------------------------
 
@@ -69,27 +68,25 @@ public class ArabicStemmer
     //--------------------------------------------------------------------------
 
     // constructor
-    ArabicStemmer (String query )
-    {
+    ArabicStemmer(String query) {
         // create the gui
 //        arabicStemmerGUI = new ArabicStemmerGUI ( this );
 
         // read in the static files
 //        currentInputFilePanelFile = new File("C:\\Users\\Click Team\\Desktop\\Khoja\\ArabicTexts\\test.txt");
-        readInStaticFiles ( );
+        readInStaticFiles();
         this.query = query;
 //        this.outputFilePanelStemButtonActionPerformed();
     }
 
 
-    ArabicStemmer ()
-    {
+    ArabicStemmer() {
         // create the gui
 //        arabicStemmerGUI = new ArabicStemmerGUI ( this );
 
         // read in the static files
         currentInputFilePanelFile = new File("C:\\Users\\Click Team\\Desktop\\Khoja\\ArabicTexts\\test.txt");
-        readInStaticFiles ();
+        readInStaticFiles();
         this.outputFilePanelStemButtonActionPerformed();
     }
 
@@ -286,8 +283,7 @@ public class ArabicStemmer
     //--------------------------------------------------------------------------
 
     // handle output file panel stem button actions
-    protected String outputFilePanelStemButtonActionPerformed ( )
-    {
+    protected String outputFilePanelStemButtonActionPerformed() {
 //        // save the current input file
 //        if ( currentInputFilePanelFile == null )
 //        {
@@ -310,21 +306,20 @@ public class ArabicStemmer
 //        }
 //        else
 //        {
-            // set the status bar message
+        // set the status bar message
 //            arabicStemmerGUI.setStatusBarMessage ( "Stemming" );
-        StringBuffer tempStringBuffer1 = new StringBuffer ( );
-        StringBuffer tempStringBuffer2 = new StringBuffer ( );
-        StringBuffer tempStringBuffer3 = new StringBuffer ( );
+        StringBuffer tempStringBuffer1 = new StringBuffer();
+        StringBuffer tempStringBuffer2 = new StringBuffer();
+        StringBuffer tempStringBuffer3 = new StringBuffer();
 
-            try
-            {
-                // stem the current input file
+        try {
+            // stem the current input file
 //                arabicStemmerGUI.components.outputFilePanel.outputFileButtons.stemButton.paintImmediately ( 0, 0, arabicStemmerGUI.components.outputFilePanel.outputFileButtons.stemButton.getWidth ( ), arabicStemmerGUI.components.outputFilePanel.outputFileButtons.stemButton.getHeight ( ) );
-                long startTime = System.currentTimeMillis ( );
-                Stem stemmedText = new Stem ( query, staticFiles );
-                long finishTime = System.currentTimeMillis ( );
+            long startTime = System.currentTimeMillis();
+            Stem stemmedText = new Stem(query, staticFiles);
+            long finishTime = System.currentTimeMillis();
 
-                // check if the stemmer could not open the input file
+            // check if the stemmer could not open the input file
 //                if ( stemmedText.couldNotOpenFile == true )
 //                {
 //                    JOptionPane.showMessageDialog ( arabicStemmerGUI, "The input file could not be stemmed as the\nstemmer could not open the file. This is\nprobably a file encoding problem. Save the\ninput file under a different encoding and\ntry again.", " Information ", JOptionPane.INFORMATION_MESSAGE );
@@ -342,39 +337,34 @@ public class ArabicStemmer
 //                    // set the status bar message
 //                    arabicStemmerGUI.setStatusBarMessage ( "Retrieving Statistics Window Data" );
 
-                    // get the statistics for the stemmed text
-                    stemmedTextStatistics = stemmedText.returnNumberStatistics ( );
-                    stemmedTextLists = stemmedText.returnLists ( );
-                    unstemmedTextNumberOfPossibleRoots = stemmedText.returnNoPossibleRoots ( );
-                    unstemmedTextPossibleRoots = stemmedText.returnPossibleRoots ( );
+            // get the statistics for the stemmed text
+            stemmedTextStatistics = stemmedText.returnNumberStatistics();
+            stemmedTextLists = stemmedText.returnLists();
+            unstemmedTextNumberOfPossibleRoots = stemmedText.returnNoPossibleRoots();
+            unstemmedTextPossibleRoots = stemmedText.returnPossibleRoots();
 
-                    // set the status bar message
+            // set the status bar message
 //                    arabicStemmerGUI.setStatusBarMessage ( "Updating Statistics Window ( Statistics )" );
 
-                    // put the stemming statistics into the panel in the
-                    // statistics window
-                    float totalWords = new Float ( String.valueOf ( stemmedTextStatistics [ 0 ] ) ).floatValue ( );
-                    float wordsNotStemmed = new Float ( String.valueOf ( stemmedTextStatistics [ 2 ] ) ).floatValue ( );
-                    String percentStemmed = new Float ( ( ( totalWords - wordsNotStemmed ) / totalWords ) * 100 ).toString ( );
-                    if ( percentStemmed.lastIndexOf ( "." ) != -1 )
-                    {
-                        if ( ( percentStemmed.length ( ) - percentStemmed.lastIndexOf ( "." ) ) > 2 )
-                        {
-                            percentStemmed = percentStemmed.substring ( 0, percentStemmed.lastIndexOf ( "." ) + 3 );
-                        }
-                    }
-                    if ( percentStemmed.compareTo ( "NaN" ) == 0 )
-                    {
-                        percentStemmed = " Error ";
-                    }
-                    else
-                    {
-                        percentStemmed = " " + percentStemmed + " % ";
-                    }
-                    String stemmingTime = " " + new Long ( ( finishTime - startTime ) / 1000 ).toString ( );
-                    stemmingTime = stemmingTime + ".";
-                    stemmingTime = stemmingTime + new Long ( ( finishTime - startTime ) % 1000 ).toString ( );
-                    stemmingTime = stemmingTime + " Seconds ";
+            // put the stemming statistics into the panel in the
+            // statistics window
+            float totalWords = new Float(String.valueOf(stemmedTextStatistics[0])).floatValue();
+            float wordsNotStemmed = new Float(String.valueOf(stemmedTextStatistics[2])).floatValue();
+            String percentStemmed = new Float(((totalWords - wordsNotStemmed) / totalWords) * 100).toString();
+            if (percentStemmed.lastIndexOf(".") != -1) {
+                if ((percentStemmed.length() - percentStemmed.lastIndexOf(".")) > 2) {
+                    percentStemmed = percentStemmed.substring(0, percentStemmed.lastIndexOf(".") + 3);
+                }
+            }
+            if (percentStemmed.compareTo("NaN") == 0) {
+                percentStemmed = " Error ";
+            } else {
+                percentStemmed = " " + percentStemmed + " % ";
+            }
+            String stemmingTime = " " + new Long((finishTime - startTime) / 1000).toString();
+            stemmingTime = stemmingTime + ".";
+            stemmingTime = stemmingTime + new Long((finishTime - startTime) % 1000).toString();
+            stemmingTime = stemmingTime + " Seconds ";
 //                    arabicStemmerGUI.statisticsWindow.statisticsWindowLabels.percentStemmedLabel.setText ( percentStemmed );
 //                    arabicStemmerGUI.statisticsWindow.statisticsWindowLabels.stemmingTimeLabel.setText ( stemmingTime );
 //                    arabicStemmerGUI.statisticsWindow.statisticsWindowLabels.stemmedWordsLabel.setText ( " " + String.valueOf ( stemmedTextStatistics [ 1 ] ) + " " );
@@ -387,16 +377,15 @@ public class ArabicStemmer
 //                    // set the status bar message
 //                    arabicStemmerGUI.setStatusBarMessage ( "Updating Statistics Window ( Stemmed Words )" );
 
-                    // put the stemmed words and their roots into the stemmed
-                    // words tab in the statistics window
-                    Vector stemmedWords = ( Vector ) stemmedTextLists.elementAt ( 0 );
-                    Vector rootsFound = ( Vector ) stemmedTextLists.elementAt ( 1 );
-                    StringBuffer tempStringBuffer = new StringBuffer ( );
-                    for ( int index = 0; index < stemmedWords.size ( ); index ++ )
-                    {
-                        tempStringBuffer.append ( "[ " + ( String ) stemmedWords.elementAt ( index ) + " : " + ( String ) rootsFound.elementAt ( index ) + " ]    " );
-                        tempStringBuffer1.append ( ( String ) rootsFound.elementAt ( index ) + " " );
-                    }
+            // put the stemmed words and their roots into the stemmed
+            // words tab in the statistics window
+            Vector stemmedWords = (Vector) stemmedTextLists.elementAt(0);
+            Vector rootsFound = (Vector) stemmedTextLists.elementAt(1);
+            StringBuffer tempStringBuffer = new StringBuffer();
+            for (int index = 0; index < stemmedWords.size(); index++) {
+                tempStringBuffer.append("[ " + (String) stemmedWords.elementAt(index) + " : " + (String) rootsFound.elementAt(index) + " ]    ");
+                tempStringBuffer1.append((String) rootsFound.elementAt(index) + " ");
+            }
 //                FileOutputStream fileOutputStream = new FileOutputStream ("C:\\Users\\Click Team\\Desktop\\Khoja\\ArabicTexts\\out.txt");
 //                Writer writer = new OutputStreamWriter ( fileOutputStream);
 //                System.out.println("Normalized Stemmed text: "+tempStringBuffer1.toString ( ));
@@ -405,62 +394,58 @@ public class ArabicStemmer
 //                    arabicStemmerGUI.statisticsWindow.stemmedWordsTextArea.setText ( tempStringBuffer.toString ( ) );
 //                    arabicStemmerGUI.statisticsWindow.stemmedWordsTextArea.setCaretPosition ( 0 );
 
-                    // set the status bar message
+            // set the status bar message
 //                    arabicStemmerGUI.setStatusBarMessage ( "Updating Statistics Window ( Words Not Stemmed )" );
 
-                    // put the words not stemmed into the words not stemmed tab
-                    // in the statistics window
-                    Vector notStemmedWords = ( Vector ) stemmedTextLists.elementAt ( 2 );
+            // put the words not stemmed into the words not stemmed tab
+            // in the statistics window
+            Vector notStemmedWords = (Vector) stemmedTextLists.elementAt(2);
 //                    tempStringBuffer = new StringBuffer ( );
-                    for ( int index = 0; index < notStemmedWords.size ( ); index ++ )
-                    {
-                        tempStringBuffer.append ( ( String ) notStemmedWords.elementAt ( index ) + "    " );
-                        tempStringBuffer2.append ( ( String ) notStemmedWords.elementAt ( index ) + "    " );
-                    }
+            for (int index = 0; index < notStemmedWords.size(); index++) {
+                tempStringBuffer.append((String) notStemmedWords.elementAt(index) + "    ");
+                tempStringBuffer2.append((String) notStemmedWords.elementAt(index) + "    ");
+            }
 //                    System.out.println("Not Stemmed Word:" + tempStringBuffer2.toString());
 //                    arabicStemmerGUI.statisticsWindow.wordsNotStemmedTextArea.setText ( tempStringBuffer.toString ( ) );
 //                    arabicStemmerGUI.statisticsWindow.wordsNotStemmedTextArea.setCaretPosition ( 0 );
 
-                    // set the status bar message
+            // set the status bar message
 //                    arabicStemmerGUI.setStatusBarMessage ( "Updating Statistics Window ( Stopwords )" );
 
-                    // put the stopwords into the stopwords tab in the
-                    // statistics window
-                    Vector originalStopword = ( Vector ) stemmedTextLists.elementAt ( 3 );
-                    Vector stopwordsFound = ( Vector ) stemmedTextLists.elementAt ( 4 );
+            // put the stopwords into the stopwords tab in the
+            // statistics window
+            Vector originalStopword = (Vector) stemmedTextLists.elementAt(3);
+            Vector stopwordsFound = (Vector) stemmedTextLists.elementAt(4);
 //                    tempStringBuffer = new StringBuffer ( );
-                    for ( int index = 0; index < originalStopword.size ( ); index ++ )
-                    {
-                        tempStringBuffer.append ( "[ " + ( String ) originalStopword.elementAt ( index ) + " : " + ( String ) stopwordsFound.elementAt ( index ) + " ]    " );
-                        tempStringBuffer3.append ( ( String ) stopwordsFound.elementAt ( index ) + " " );
-                    }
+            for (int index = 0; index < originalStopword.size(); index++) {
+                tempStringBuffer.append("[ " + (String) originalStopword.elementAt(index) + " : " + (String) stopwordsFound.elementAt(index) + " ]    ");
+                tempStringBuffer3.append((String) stopwordsFound.elementAt(index) + " ");
+            }
 //                    System.out.println("Stop Words Found: "+ tempStringBuffer3.toString());
 //                    arabicStemmerGUI.statisticsWindow.stopwordsTextArea.setText ( tempStringBuffer.toString ( ) );
 //                    arabicStemmerGUI.statisticsWindow.stopwordsTextArea.setCaretPosition ( 0 );
 
-                    // set the status bar message
+            // set the status bar message
 //                    arabicStemmerGUI.setStatusBarMessage ( "Updating Roots Window" );
 
-                    // put the possible roots for any unstemmed text into the
-                    // text area in the roots window
+            // put the possible roots for any unstemmed text into the
+            // text area in the roots window
 //                    tempStringBuffer = new StringBuffer ( );
-                    for ( int index = 0; index < unstemmedTextNumberOfPossibleRoots; index ++ )
-                    {
-                        if ( unstemmedTextPossibleRoots [ index ] [ 1 ].compareTo ( "" ) != 0 )
-                        {
-                            tempStringBuffer.append ( "[ " + unstemmedTextPossibleRoots [ index ] [ 0 ] + " : " + unstemmedTextPossibleRoots [ index ] [ 1 ] + " ]    " );
-                        }
-                    }
+            for (int index = 0; index < unstemmedTextNumberOfPossibleRoots; index++) {
+                if (unstemmedTextPossibleRoots[index][1].compareTo("") != 0) {
+                    tempStringBuffer.append("[ " + unstemmedTextPossibleRoots[index][0] + " : " + unstemmedTextPossibleRoots[index][1] + " ]    ");
+                }
+            }
 //                writer.write ( tempStringBuffer.toString ( ) );
 //                writer.close ( );
 //                    arabicStemmerGUI.rootsWindow.textArea.setText ( tempStringBuffer.toString ( ) );
 //                    arabicStemmerGUI.rootsWindow.textArea.setCaretPosition ( 0 );
 
-                    // set the status bar message
+            // set the status bar message
 //                    arabicStemmerGUI.setStatusBarMessage ( "Checking Results" );
 
-                    // enable or disable the buttons depending on the success of
-                    // the stemming
+            // enable or disable the buttons depending on the success of
+            // the stemming
 //                    if ( stemmedTextStatistics [ 0 ] == 0 )
 //                    {
 //                        JOptionPane.showMessageDialog ( arabicStemmerGUI, "The input file could not be stemmed as it contains no words.", " Information ", JOptionPane.INFORMATION_MESSAGE );
@@ -473,14 +458,11 @@ public class ArabicStemmer
 //                        // enable the buttons
 //                        arabicStemmerGUI.enableOutputFilePanelButtons ( );
 //                    }
-            }
-            catch ( Exception exception )
-            {
+        } catch (Exception exception) {
 //                JOptionPane.showMessageDialog ( arabicStemmerGUI, "The input file could not be stemmed as it is\ntoo long for Java to process. You should split\nit into smaller pieces and stem each piece\nindividually.", " Error ", JOptionPane.ERROR_MESSAGE );
-            }
+        }
 
-        return tempStringBuffer1.toString ( );
-
+        return tempStringBuffer1.toString();
 
 
         // set the status bar message
@@ -491,48 +473,42 @@ public class ArabicStemmer
     //--------------------------------------------------------------------------
 
     // handle output file panel statistics button actions
-    protected void outputFilePanelStatisticsButtonActionPerformed ( )
-    {
+    protected void outputFilePanelStatisticsButtonActionPerformed() {
 //        arabicStemmerGUI.displayStatisticsWindow ( );
     }
 
     //--------------------------------------------------------------------------
 
     // handle output file panel roots button actions
-    protected void outputFilePanelRootsButtonActionPerformed ( )
-    {
+    protected void outputFilePanelRootsButtonActionPerformed() {
 //        arabicStemmerGUI.displayRootsWindow ( );
     }
 
     //--------------------------------------------------------------------------
 
     // handle output file panel save as button actions
-    protected void outputFilePanelSaveAsButtonActionPerformed ( )
-    {
+    protected void outputFilePanelSaveAsButtonActionPerformed() {
 //        saveFile ( arabicStemmerGUI, new File ( System.getProperty ( "user.dir" ) + System.getProperty ( "file.separator" ) + "ArabicTexts" + System.getProperty ( "file.separator" ) + "StemmedText.txt" ), arabicStemmerGUI.components.outputFilePanel.textArea, true );
     }
 
     //--------------------------------------------------------------------------
 
     // handle combo boxes panel font combo box actions
-    protected void comboBoxesPanelFontComboBoxActionPerformed ( )
-    {
+    protected void comboBoxesPanelFontComboBoxActionPerformed() {
 //        arabicStemmerGUI.setFont ( );
     }
 
     //--------------------------------------------------------------------------
 
     // handle combo boxes panel look and feel combo box actions
-    protected void comboBoxesPanelLookAndFeelComboBoxActionPerformed ( )
-    {
+    protected void comboBoxesPanelLookAndFeelComboBoxActionPerformed() {
 //        arabicStemmerGUI.setLookAndFeel ( );
     }
 
     //--------------------------------------------------------------------------
 
     // handle remaining buttons panel about button actions
-    protected void remainingButtonsPanelAboutButtonActionPerformed ( )
-    {
+    protected void remainingButtonsPanelAboutButtonActionPerformed() {
 //        arabicStemmerGUI.displayAboutDialog ( );
     }
 
@@ -711,20 +687,19 @@ public class ArabicStemmer
 //            rootsWindowCloseButtonActionPerformed ( );
 //        }
 //    }
-    public void insertUpdate ( DocumentEvent event )
-    {
-        inputFilePanelTextAreaChanged ( );
+    public void insertUpdate(DocumentEvent event) {
+        inputFilePanelTextAreaChanged();
     }
-    public void removeUpdate ( DocumentEvent event )
-    {
-        inputFilePanelTextAreaChanged ( );
+
+    public void removeUpdate(DocumentEvent event) {
+        inputFilePanelTextAreaChanged();
     }
-    public void changedUpdate ( DocumentEvent event )
-    {
-        inputFilePanelTextAreaChanged ( );
+
+    public void changedUpdate(DocumentEvent event) {
+        inputFilePanelTextAreaChanged();
     }
-    protected void inputFilePanelTextAreaChanged ( )
-    {
+
+    protected void inputFilePanelTextAreaChanged() {
 //        if ( arabicStemmerGUI.components.inputFilePanel.textArea.getText( ).compareTo ( "" ) == 0 )
 //        {
 //            currentInputFilePanelFileNeedsSaving = false;
@@ -748,36 +723,27 @@ public class ArabicStemmer
     //--------------------------------------------------------------------------
 
     // save the contents of a text area to a file
-    protected File saveFile ( Component parent, File file, JTextArea textArea, boolean doSaveAs )
-    {
-        if ( ( file == null ) || ( doSaveAs == true ) )
-        {
+    protected File saveFile(Component parent, File file, JTextArea textArea, boolean doSaveAs) {
+        if ((file == null) || (doSaveAs == true)) {
 //            file = arabicStemmerGUI.displaySaveAsFileDialog ( parent, file );
-            if ( file != null )
-            {
-                if ( file.exists ( ) == true )
-                {
-                    int returnValue = JOptionPane.showConfirmDialog ( parent, "Overwrite '" + file + "'?", " Confirm ", JOptionPane.YES_NO_OPTION );
-                    if ( returnValue == JOptionPane.NO_OPTION )
-                    {
+            if (file != null) {
+                if (file.exists() == true) {
+                    int returnValue = JOptionPane.showConfirmDialog(parent, "Overwrite '" + file + "'?", " Confirm ", JOptionPane.YES_NO_OPTION);
+                    if (returnValue == JOptionPane.NO_OPTION) {
                         file = null;
                     }
                 }
             }
         }
-        if ( file != null )
-        {
-            try
-            {
-                FileOutputStream fileOutputStream = new FileOutputStream ( file );
+        if (file != null) {
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
 //                Writer writer = new OutputStreamWriter ( fileOutputStream, arabicStemmerGUI.components.comboBoxesPanel.encodingComboBox.getSelectedItem( ).toString ( ) );
 //                writer.write ( textArea.getText ( ) );
 //                writer.close ( );
-                JOptionPane.showMessageDialog ( parent, "Successfully saved '" + file + "'.", " Information ", JOptionPane.INFORMATION_MESSAGE );
-            }
-            catch ( Exception exception )
-            {
-                JOptionPane.showMessageDialog ( parent, "Could not save '" + file + "'.", " Error ", JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog(parent, "Successfully saved '" + file + "'.", " Information ", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(parent, "Could not save '" + file + "'.", " Error ", JOptionPane.ERROR_MESSAGE);
                 file = null;
             }
         }
@@ -787,101 +753,90 @@ public class ArabicStemmer
     //--------------------------------------------------------------------------
 
     // read in the static files
-    protected void readInStaticFiles ( )
-    {
+    protected void readInStaticFiles() {
         // create a string buffer containing the path to the static files
-        String pathToStemmerFiles = new StringBuffer ( System.getProperty ( "user.dir" ) + System.getProperty ( "file.separator" ) + "src"  + System.getProperty ( "file.separator" ) + "main" +System.getProperty ( "file.separator" ) + "java" + System.getProperty ( "file.separator" ) + "com" + System.getProperty ( "file.separator" ) + "AQAS" + System.getProperty ( "file.separator" ) + "question_processessing" + System.getProperty ( "file.separator" ) + "StemmerFiles" +System.getProperty ( "file.separator" ) ).toString ( );
+        String pathToStemmerFiles = new StringBuffer(System.getProperty("user.dir") + System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "main" + System.getProperty("file.separator") + "java" + System.getProperty("file.separator") + "com" + System.getProperty("file.separator") + "AQAS" + System.getProperty("file.separator") + "question_processessing" + System.getProperty("file.separator") + "StemmerFiles" + System.getProperty("file.separator")).toString();
 
         // create the vector composed of vectors containing the static files
-        staticFiles = new Vector ( );
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "definite_article.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "duplicate.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "first_waw.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "first_yah.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "last_alif.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "last_hamza.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "last_maksoura.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "last_yah.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "mid_waw.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "mid_yah.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "prefixes.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "punctuation.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "quad_roots.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "stopwords.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "suffixes.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "tri_patt.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "tri_roots.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "diacritics.txt" ).toString ( ) ) )
-        if ( addVectorFromFile ( new StringBuffer ( pathToStemmerFiles + "strange.txt" ).toString ( ) ) )
-        {
-            // the vector was successfully created
+        staticFiles = new Vector();
+        if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "definite_article.txt").toString()))
+            if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "duplicate.txt").toString()))
+                if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "first_waw.txt").toString()))
+                    if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "first_yah.txt").toString()))
+                        if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "last_alif.txt").toString()))
+                            if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "last_hamza.txt").toString()))
+                                if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "last_maksoura.txt").toString()))
+                                    if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "last_yah.txt").toString()))
+                                        if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "mid_waw.txt").toString()))
+                                            if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "mid_yah.txt").toString()))
+                                                if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "prefixes.txt").toString()))
+                                                    if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "punctuation.txt").toString()))
+                                                        if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "quad_roots.txt").toString()))
+                                                            if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "stopwords.txt").toString()))
+                                                                if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "suffixes.txt").toString()))
+                                                                    if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "tri_patt.txt").toString()))
+                                                                        if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "tri_roots.txt").toString()))
+                                                                            if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "diacritics.txt").toString()))
+                                                                                if (addVectorFromFile(new StringBuffer(pathToStemmerFiles + "strange.txt").toString())) {
+                                                                                    // the vector was successfully created
 //            System.out.println( "read in files successfully" );
-        }
+                                                                                }
     }
 
     //--------------------------------------------------------------------------
 
     // read in the contents of a file, put it into a vector, and add that vector
     // to the vector composed of vectors containing the static files
-    protected boolean addVectorFromFile ( String fileName )
-    {
+    protected boolean addVectorFromFile(String fileName) {
         boolean returnValue;
-        try
-        {
+        try {
             // the vector we are going to fill
-            Vector vectorFromFile = new Vector ( );
+            Vector vectorFromFile = new Vector();
 
             // create a buffered reader
-            File file = new File ( fileName );
-            FileInputStream fileInputStream = new FileInputStream ( file );
-            InputStreamReader inputStreamReader = new InputStreamReader ( fileInputStream, "UTF-16" );
+            File file = new File(fileName);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-16");
 
             //If the bufferedReader is not big enough for a file, I should change the size of it here
-            BufferedReader bufferedReader = new BufferedReader ( inputStreamReader, 20000 );
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader, 20000);
 
             // read in the text a line at a time
             String part;
-            StringBuffer word = new StringBuffer ( );
-            while ( ( part = bufferedReader.readLine ( ) ) != null )
-            {
+            StringBuffer word = new StringBuffer();
+            while ((part = bufferedReader.readLine()) != null) {
                 // add spaces at the end of the line
                 part = part + "  ";
 
                 // for each line
-                for ( int index = 0; index < part.length ( ) - 1; index ++ )
-                {
+                for (int index = 0; index < part.length() - 1; index++) {
                     // if the character is not a space, append it to a word
-                    if ( ! ( Character.isWhitespace ( part.charAt ( index ) ) ) )
-                    {
-                        word.append ( part.charAt ( index ) );
+                    if (!(Character.isWhitespace(part.charAt(index)))) {
+                        word.append(part.charAt(index));
                     }
                     // otherwise, if the word contains some characters, add it
                     // to the vector
-                    else
-                    {
-                        if ( word.length ( ) != 0 )
-                        {
-                            vectorFromFile.addElement ( word.toString ( ) );
-                            word.setLength ( 0 );
+                    else {
+                        if (word.length() != 0) {
+                            vectorFromFile.addElement(word.toString());
+                            word.setLength(0);
                         }
                     }
                 }
             }
 
             // trim the vector
-            vectorFromFile.trimToSize ( );
+            vectorFromFile.trimToSize();
 
             // destroy the buffered reader
-            bufferedReader.close ( );
-   	        fileInputStream.close ( );
+            bufferedReader.close();
+            fileInputStream.close();
 
             // add the vector to the vector composed of vectors containing the
             // static files
-            staticFiles.addElement ( vectorFromFile );
+            staticFiles.addElement(vectorFromFile);
             returnValue = true;
-        }
-        catch ( Exception exception )
-        {
+        } catch (Exception exception) {
 //            JOptionPane.showMessageDialog ( arabicStemmerGUI, "Could not open '" + fileName + "'.", " Error ", JOptionPane.ERROR_MESSAGE );
             returnValue = false;
         }

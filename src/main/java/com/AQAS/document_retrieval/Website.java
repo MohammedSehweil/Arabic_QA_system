@@ -160,7 +160,7 @@ class Google extends Website {
 
             //use JAVA 8 to make this valid(press on error message to solve the problem)
             //remove unwanted websites
-            if( Arrays.stream(ConfigD.unwantedWebsites).parallel().noneMatch(link::contains)){
+            if (Arrays.stream(ConfigD.unwantedWebsites).parallel().noneMatch(link::contains)) {
                 links.add(link);
             }
             //Another solution(using loop)

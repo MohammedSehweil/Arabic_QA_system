@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static com.AQAS.Database.HelpersDB.props;
 
-public class Question  {
+public class Question {
 
     int id;
     String text;
@@ -22,7 +22,7 @@ public class Question  {
 
     public int store() {
         try {
-            Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP")+"questions")
+            Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP") + "questions")
                     .data("text", this.text)
                     .userAgent("Mozilla")
                     .post();
@@ -34,11 +34,11 @@ public class Question  {
         }
     }
 
-    public Question get(){
+    public Question get() {
         return null;
     }
 
-    public ArrayList<Question> getForms(){
+    public ArrayList<Question> getForms() {
         return null;
     }
 }

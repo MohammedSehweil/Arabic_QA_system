@@ -23,7 +23,7 @@ public class Driver {
 
         intializeProb();
         openWebDriver();
-        if(ConfigM.BUILDDB){
+        if (ConfigM.BUILDDB) {
             storeTestingData();
         }
 

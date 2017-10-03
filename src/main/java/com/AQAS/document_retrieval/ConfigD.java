@@ -3,16 +3,16 @@ package com.AQAS.document_retrieval;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public final  class ConfigD {
+public final class ConfigD {
 
-    public final class Keys{
+    public final class Keys {
         public static final String searchQuery = "searchQuery";
         public static final String searchNumOfPages = "searchNumOfPages";
     }
 
     public static final boolean VERBOS = true;
 
-    public static final String [] unwantedWebsites  = {"youtube" , "anotherWebSite"};
+    public static final String[] unwantedWebsites = {"youtube", "anotherWebSite"};
     public static final ArrayList<Website> webSites = new ArrayList<Website>(Arrays.asList(
             new Website("doctoori",
                     "http://www.doctoori.net/search/?word=%s&pg=%s",

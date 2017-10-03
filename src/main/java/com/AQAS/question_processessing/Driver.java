@@ -10,8 +10,8 @@ public class Driver {
         String query = "ما هي أعراض مرض السكري القوي ؟";
         HashMap<String, String> out = QuestionPreprocessing.preProcessInput(query);
         System.out.println("input query : " + query);
-        System.out.println("normalized  query : " +out.get(ConfigP.Keys.NormalizedText));
-        System.out.println("stemmed query : " +out.get(ConfigP.Keys.StemmedText));
+        System.out.println("normalized  query : " + out.get(ConfigP.Keys.NormalizedText));
+        System.out.println("stemmed query : " + out.get(ConfigP.Keys.StemmedText));
 
 
     }

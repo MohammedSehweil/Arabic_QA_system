@@ -31,11 +31,11 @@ public class Document {
         this.form_id = form_id;
     }
 
-    public int store(){
+    public int store() {
         try {
-            org.jsoup.nodes.Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP")+"forms/document/"+this.form_id)
+            org.jsoup.nodes.Document doc = Jsoup.connect(props.getProperty("LOCAL_SERVER_IP") + "forms/document/" + this.form_id)
                     .data("text", this.text)
-                    .data("link",this.link)
+                    .data("link", this.link)
                     .userAgent("Mozilla")
                     .post();
             return Integer.parseInt(doc.text());

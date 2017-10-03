@@ -14,7 +14,7 @@ import static com.AQAS.document_retrieval.DocumentRetrieval.retrieveDocumentText
 
 public class HelpersDB {
 
-    public static  Properties props = null;
+    public static Properties props = null;
 
     public static void storeTestingData() {
         intializeProb();
@@ -55,7 +55,6 @@ public class HelpersDB {
         }
 
     }
-
 
 
 }

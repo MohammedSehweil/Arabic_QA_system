@@ -9,7 +9,7 @@ import java.util.*;
 
 public final class HelpersD {
 
-    public static WebDriver driver ;
+    public static WebDriver driver;
 
     public static ArrayList<String> removeDuplicates(ArrayList<String> a) {
         ArrayList<String> al = a;
@@ -26,7 +26,7 @@ public final class HelpersD {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true);
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, System.getProperty("user.dir") + "/exec/phantomjs.exe");
-         driver = new PhantomJSDriver(caps);
+        driver = new PhantomJSDriver(caps);
 
     }
 

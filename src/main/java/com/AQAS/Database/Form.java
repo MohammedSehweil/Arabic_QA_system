@@ -64,10 +64,10 @@ public class Form {
             Iterator<JSONObject> iterator = jsonArray.iterator();
             while (iterator.hasNext()) {
                 JSONObject tmp = iterator.next();
-                String link = (String)tmp.get("link");
-                String text =  StringEscapeUtils.unescapeJava((String)tmp.get("text"));
-                int document_id = Integer.parseInt(tmp.get("id")+"");
-                this.documents.add(new Document(document_id,link,text,this.id));
+                String link = (String) tmp.get("link");
+                String text = StringEscapeUtils.unescapeJava((String) tmp.get("text"));
+                int document_id = Integer.parseInt(tmp.get("id") + "");
+                this.documents.add(new Document(document_id, link, text, this.id));
             }
 
             return this.documents;
