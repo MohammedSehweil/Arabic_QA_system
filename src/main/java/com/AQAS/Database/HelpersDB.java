@@ -1,6 +1,7 @@
 package com.AQAS.Database;
 
-import com.AQAS.document_retrieval.HelpersD;
+import com.AQAS.document_retrieval.DocumentRetrieval;
+import com.AQAS.document_retrieval.Website_Document;
 import com.AQAS.main.ConfigM;
 import com.AQAS.question_processessing.ConfigP;
 import com.AQAS.question_processessing.QuestionPreprocessing;
@@ -20,19 +21,19 @@ public class HelpersDB {
         intializeProb();
         for (Question question : ConfigDB.testingQuestions) {
             int question_id = question.store();
-//            System.out.println(question_id);
             for (Form form : question.forms) {
                 form.text = QuestionPreprocessing.preProcessInput(form.text).get(ConfigP.Keys.NormalizedText);
 
                 form.question_id = question_id;
                 int form_id = form.store();
-                ArrayList<String> searchResultURLs = HelpersD.getLinks(form.text, ConfigM.searchNumOfPages);
-                for (String url : searchResultURLs) {
-                    String documentText = retrieveDocumentText(url);
-                    Document newDoc = new Document(url, documentText);
-                    newDoc.form_id = form_id;
-
-                    newDoc.store();
+                ArrayList<Website_Document> website_documents = DocumentRetrieval.getLinksOfAllWebsitesByQuery(form.text, ConfigM.searchNumOfPages);
+                for (Website_Document website_document : website_documents) {
+                    for (String url : website_document.DocumentLinks) {
+                        String documentText = retrieveDocumentText(url , website_document.websiteContentSelector);
+                        Document newDoc = new Document(url, documentText);
+                        newDoc.form_id = form_id;
+                        newDoc.store();
+                    }
                 }
 
 

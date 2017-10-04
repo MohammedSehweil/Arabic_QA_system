@@ -35,19 +35,7 @@ public final class HelpersD {
         driver.close();
     }
 
-    public static ArrayList<String> getLinks(String query, int searchNumOfPages) {
-        ArrayList<String> searchResultURLs;
-        DocumentRetrieval documentRetrieval = new DocumentRetrieval();
 
-        HashMap<String, Object> searchAttr = new HashMap<String, Object>();
-        searchAttr.put(ConfigD.Keys.searchQuery, query);
-        searchAttr.put(ConfigD.Keys.searchNumOfPages, searchNumOfPages);
-
-        searchResultURLs = documentRetrieval.getLinksFromAllWebsites(searchAttr);
-
-
-        return searchResultURLs;
-    }
 
 
 }

@@ -19,7 +19,7 @@ public final class ConfigD {
                     "pg",
                     "a.btn-primary",
                     0,
-                    "div#condition-content"
+                    "div.content-main"
             )
 //            , new Website("webteb",
 //                    "https://www.webteb.com/search?q=%s&page=%s",
@@ -32,7 +32,7 @@ public final class ConfigD {
 //                    "page",//no page
 //                    ".post-listing h2.post-box-title a",
 //                    1,
-//                    "div.main-content"),
+//                    "div#main-content"),
 //            new Google("google",
 //                    "https://www.googleapis.com/customsearch/v1?key=AIzaSyAKiXvk5uoSL4Vs9a9DzraCdDd6J4E22oY&cx=013036536707430787589:_pqjad5hr1a&q=%s&alt=json&start=%s",
 //                    "start",
