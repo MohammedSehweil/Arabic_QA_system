@@ -1,31 +1,33 @@
 package com.AQAS.document_retrieval;
 
 import org.json.simple.parser.ParseException;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.AQAS.document_retrieval.HelpersD.driver;
+
 public class DocumentRetrieval {
 
 
     /**
-     *
      * @param searchAttr
      * @return Array list for all links in all websites
      */
     public ArrayList<String> getLinksFromAllWebsites(HashMap<String, Object> searchAttr) {
-
-        WebDriver driver = HelpersD.openWebDriver();
-
         ArrayList<String> searchResultURLs = new ArrayList<String>();
 
         for (Website website : ConfigD.webSites) {
             try {
-                searchResultURLs.addAll(website.getLinks(searchAttr, driver));
+                searchResultURLs.addAll(website.getLinks(searchAttr));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
@@ -33,17 +35,14 @@ public class DocumentRetrieval {
             }
         }
         //Close the browser
-        HelpersD.closeWebDriver(driver);
 
         return HelpersD.removeDuplicates(searchResultURLs);
     }
 
     /**
-     *
      * @param URL
      */
-    public void getDocument(String URL) {
-        WebDriver driver = HelpersD.openWebDriver();
+    public static String retrieveDocumentText(String URL) {
         driver.get(URL);
         try {
             WebElement showMoreButton = driver.findElement(By.className("showMore"));
@@ -53,10 +52,9 @@ public class DocumentRetrieval {
 
         WebElement we = driver.findElement(By.tagName("body"));
 
-        System.out.println(we.getText());
 
-        HelpersD.closeWebDriver(driver);
-
+        String documentText = we.getText();
+        return documentText;
 
     }
 

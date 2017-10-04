@@ -1,7 +1,6 @@
 package com.AQAS.document_retrieval;
 
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,7 +12,7 @@ public class Driver {
         //Specify the number of search pages result to be used.
         int searchNumOfPages = 2;
 
-        ArrayList<String> searchResultURLs = HelpersD.getLinks(query , searchNumOfPages);
+        ArrayList<String> searchResultURLs = HelpersD.getLinks(query, searchNumOfPages);
 
 
         //printing the links

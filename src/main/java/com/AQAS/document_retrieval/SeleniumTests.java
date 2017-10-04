@@ -18,7 +18,7 @@ public class SeleniumTests {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true);
-        caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY ,System.getProperty("user.dir") + "/exec/phantomjs.exe" );
+        caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, System.getProperty("user.dir") + "/exec/phantomjs.exe");
         WebDriver driver = new PhantomJSDriver(caps);
 
         // And now use this to visit Google
@@ -27,8 +27,7 @@ public class SeleniumTests {
         try {
             WebElement showMoreButton = driver.findElement(By.className("showMore"));
             showMoreButton.click();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             ;
         }
 
