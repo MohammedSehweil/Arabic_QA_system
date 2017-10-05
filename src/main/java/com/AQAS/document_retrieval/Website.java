@@ -79,6 +79,7 @@ public class Website {
         }
         Website_Document ret = new Website_Document();
         ret.websiteContentSelector = this.contentSelector;
+        ret.sourceWebsite = this.websiteName;
         ret.DocumentLinks = allLinks;
         return ret;
     }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.AQAS.document_retrieval.HelpersD.driver;
+import static com.AQAS.document_retrieval.HelpersD.removeDuplicatesFromDocumentLinks;
 
 public class DocumentRetrieval {
 
@@ -26,7 +27,7 @@ public class DocumentRetrieval {
                 e.printStackTrace();
             }
         }
-        return DocumentSLinksWithContentSelctor; //TODO Don't forget to use Remove Duplicate
+        return removeDuplicatesFromDocumentLinks(DocumentSLinksWithContentSelctor,ConfigD.websitesToremoveDuplicatesFrom);
     }
 
 

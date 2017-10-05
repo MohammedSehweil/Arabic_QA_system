@@ -31,9 +31,13 @@ public class HelpersM {
 
         for (Website_Document website_document : website_documents) {
             for (String url : website_document.DocumentLinks) {
+                if (ConfigM.VERBOS) {
+                    System.out.println(url);
+                }
                 String text = DocumentRetrieval.retrieveDocumentText(url , website_document.websiteContentSelector);
                 form.documents.add(new Document(url, text));
             }
+//            System.out.println("----------------------");
         }
         return form;
     }
