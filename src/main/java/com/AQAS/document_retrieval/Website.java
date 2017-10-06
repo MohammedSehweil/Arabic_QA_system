@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.UnsupportedEncodingException;
@@ -41,7 +40,9 @@ public class Website {
     }
 
 
-    public ArrayList<String> _getLinksOnePage(String generatedSearchURL) throws ParseException {
+    public ArrayList<String> _extractDocumentsLinksForOnePage(String generatedSearchURL) throws ParseException {
+
+        assert driver != null;
 
         //GET request
         driver.get(generatedSearchURL);
@@ -66,7 +67,7 @@ public class Website {
     /*
         generic function to get documents links
      */
-    public ArrayList<String> getLinks(HashMap<String, Object> searchAttr) throws UnsupportedEncodingException, ParseException {
+    public Website_Document extractDocumentsLinksForAllPages(HashMap<String, Object> searchAttr) throws UnsupportedEncodingException, ParseException {
         ArrayList<String> allLinks = new ArrayList<String>();
 
         int startPage = this.searchPageOffset;
@@ -74,9 +75,13 @@ public class Website {
         for (int i = startPage; i < endPage; i++) {
             System.out.println("Link Requested->" + this.generateSearchLink((String) searchAttr.get("searchQuery"), i));
             String generatedSearchURL = this.generateSearchLink((String) searchAttr.get("searchQuery"), i);
-            allLinks.addAll(_getLinksOnePage(generatedSearchURL));
+            allLinks.addAll(_extractDocumentsLinksForOnePage(generatedSearchURL));
         }
-        return allLinks;
+        Website_Document ret = new Website_Document();
+        ret.websiteContentSelector = this.contentSelector;
+        ret.sourceWebsite = this.websiteName;
+        ret.DocumentLinks = allLinks;
+        return ret;
     }
 
     @Override
@@ -138,7 +143,7 @@ class Google extends Website {
     }
 
     @Override
-    public ArrayList<String> _getLinksOnePage(String generatedSearchURL) throws ParseException {
+    public ArrayList<String> _extractDocumentsLinksForOnePage(String generatedSearchURL) throws ParseException {
 
         ArrayList<String> links = new ArrayList<String>();
 

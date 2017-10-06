@@ -11,15 +11,27 @@ public final class HelpersD {
 
     public static WebDriver driver;
 
-    public static ArrayList<String> removeDuplicates(ArrayList<String> a) {
-        ArrayList<String> al = a;
-        // add elements to al, including duplicates
-        Set<String> hs = new HashSet<String>();
-        hs.addAll(al);
-        al.clear();
-        al.addAll(hs);
+    public static ArrayList<Website_Document> removeDuplicatesFromDocumentLinks(ArrayList<Website_Document> websiteDocuments,
+                                                                                String[] listOfWebsitesToApplyOn) {
 
-        return al;
+        for(String sourceWebsite:listOfWebsitesToApplyOn ){
+            ArrayList<String> allLinksTocheckDuplicates = new ArrayList<String>();
+            int index = 0;
+            int websiteIndex = 0;
+            for(Website_Document websiteDocument:websiteDocuments){
+                if(!sourceWebsite.equals(websiteDocument.sourceWebsite)){
+                    allLinksTocheckDuplicates.addAll(websiteDocument.DocumentLinks);
+                }
+                else{
+                    websiteIndex = index;
+                }
+                index++;
+            }
+            websiteDocuments.get(websiteIndex).removeDuplicatedDocumentLinks(allLinksTocheckDuplicates);
+        }
+
+        return websiteDocuments;
+
     }
 
     public static void openWebDriver() {
@@ -35,19 +47,7 @@ public final class HelpersD {
         driver.close();
     }
 
-    public static ArrayList<String> getLinks(String query, int searchNumOfPages) {
-        ArrayList<String> searchResultURLs;
-        DocumentRetrieval documentRetrieval = new DocumentRetrieval();
 
-        HashMap<String, Object> searchAttr = new HashMap<String, Object>();
-        searchAttr.put(ConfigD.Keys.searchQuery, query);
-        searchAttr.put(ConfigD.Keys.searchNumOfPages, searchNumOfPages);
-
-        searchResultURLs = documentRetrieval.getLinksFromAllWebsites(searchAttr);
-
-
-        return searchResultURLs;
-    }
 
 
 }
