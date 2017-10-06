@@ -29,7 +29,7 @@ public class Driver {
 
         Form form = retrieveDocuments(ConfigM.query);
 
-        System.out.println(form);
+//        System.out.println(form);
 
         closeWebDriver();
     }
