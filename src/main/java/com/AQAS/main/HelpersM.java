@@ -31,6 +31,7 @@ public class HelpersM {
 
         for (Website_Document website_document : website_documents) {
             for (String url : website_document.DocumentLinks) {
+                System.out.println("Link is :" + url);
                 String text = DocumentRetrieval.retrieveDocumentText(url , website_document.websiteContentSelector);
                 form.documents.add(new Document(url, text));
             }
