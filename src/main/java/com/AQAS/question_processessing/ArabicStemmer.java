@@ -88,9 +88,24 @@ public class ArabicStemmer
 //        arabicStemmerGUI = new ArabicStemmerGUI ( this );
 
         // read in the static files
-        currentInputFilePanelFile = new File("C:\\Users\\Click Team\\Desktop\\Khoja\\ArabicTexts\\test.txt");
+//        currentInputFilePanelFile = new File("C:\\Users\\Click Team\\Desktop\\Khoja\\ArabicTexts\\test.txt");
         readInStaticFiles ();
-        this.outputFilePanelStemButtonActionPerformed();
+//        this.outputFilePanelStemButtonActionPerformed();
+    }
+
+    protected String removeStopWords(String[] tokens)
+    { String removedStop = "";
+
+      for(int i= 0 ; i<tokens.length ; i++)
+      {
+          Vector v = ( Vector ) staticFiles.elementAt ( 13 );
+
+          if ( ! v.contains ( tokens[i] ) )
+          {
+              removedStop = removedStop + " "+tokens[i];
+          }
+      }
+      return  removedStop;
     }
 
     //--------------------------------------------------------------------------
