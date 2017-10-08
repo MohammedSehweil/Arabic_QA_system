@@ -22,7 +22,7 @@ public class Driver {
         nGrams_cloned.clear();
         nGrams_cloned.addAll(hs);
 
-        System.out.println(nGrams);
+//        System.out.println(nGrams);
         System.out.println(nGrams_cloned);
         for (StringList stringList : nGrams_cloned) {
             if (n == 1) {
