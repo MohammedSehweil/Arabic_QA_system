@@ -8,6 +8,7 @@ import com.AQAS.question_processessing.ConfigP;
 import com.AQAS.question_processessing.HelpersP;
 import com.AQAS.question_processessing.QuestionPreprocessing;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +20,7 @@ import static com.AQAS.main.HelpersM.retrieveDocuments;
 
 public class Driver {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         intializeProb();
         openWebDriver();

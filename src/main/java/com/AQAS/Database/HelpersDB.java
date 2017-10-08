@@ -7,6 +7,7 @@ import com.AQAS.question_processessing.ConfigP;
 import com.AQAS.question_processessing.QuestionPreprocessing;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -17,7 +18,7 @@ public class HelpersDB {
 
     public static Properties props = null;
 
-    public static void storeTestingData() {
+    public static void storeTestingData() throws IOException {
         intializeProb();
         for (Question question : ConfigDB.testingQuestions) {
             int question_id = question.store();
