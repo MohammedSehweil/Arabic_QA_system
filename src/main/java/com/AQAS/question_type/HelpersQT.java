@@ -5,13 +5,26 @@ import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.converters.ArffLoader;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelpersQT {
 
 
 
+
+    public static Instances createAarfJava(String FileName) throws IOException {
+//        FileName =".\\src\\main\\java\\com\\AQAS\\question_type\\t.arff"; //example
+        ArffLoader loader = new ArffLoader();
+        loader.setFile(new File(FileName));
+        Instances data = loader.getDataSet();
+        data.setClassIndex(data.numAttributes() - 1);
+
+        return data;
+    }
 
     public static Instances createAarfJava(){
 
@@ -65,4 +78,6 @@ public class HelpersQT {
         return data;
 
     }
+
+
 }
