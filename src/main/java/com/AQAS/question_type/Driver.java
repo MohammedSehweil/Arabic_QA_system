@@ -1,15 +1,19 @@
 package com.AQAS.question_type;
 
 
+import com.AQAS.document_retrieval.HelpersD;
 import opennlp.tools.util.StringList;
 
+import java.io.File;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import weka.core.Instance;
 import weka.core.tokenizers.NGramTokenizer;
+import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
 
@@ -34,8 +38,8 @@ public class Driver {
         stringToWordVector.setTFTransform(true);
 
         NGramTokenizer nGramTokenizer = new NGramTokenizer();
-        nGramTokenizer.setNGramMaxSize(2);
-        nGramTokenizer.setNGramMinSize(2);
+        nGramTokenizer.setNGramMaxSize(1);
+        nGramTokenizer.setNGramMinSize(1);
         nGramTokenizer.setDelimiters(" \n" + " \t.,;:'\"()?!");
 
         stringToWordVector.setTokenizer(nGramTokenizer);
@@ -43,6 +47,18 @@ public class Driver {
         stringToWordVector.setAttributeIndices("review");
         stringToWordVector.setAttributeIndices("TypeClass");
 
+        stringToWordVector.setAttributeIndices("first-last");
+        Instances data = HelpersQT.createAarfJava();
+        stringToWordVector.setInputFormat(data);
+
+        stringToWordVector.input(data.get(0));
+        stringToWordVector.input(data.get(1));
+        stringToWordVector.input(data.get(2));
+
+
+        System.out.println("**********************************");
+        Instances newData = Filter.useFilter(data, stringToWordVector);
+        System.out.println(newData);
 //
 //        int n = 2; //n-gram
 //        String[] s = "I saw the fox saw the fox".split(" ");

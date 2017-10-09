@@ -3,6 +3,7 @@ package com.AQAS.question_type;
 
 import weka.core.Attribute;
 import weka.core.DenseInstance;
+import weka.core.Instance;
 import weka.core.Instances;
 
 import java.util.ArrayList;
@@ -11,7 +12,10 @@ public class HelpersQT {
 
 
 
-    public static void createAarfJava(){
+
+    public static Instances createAarfJava(){
+
+        //reference https://codereview.stackexchange.com/questions/160027/convert-java-data-to-weka-friendly-format-without-using-arff
         ArrayList<Attribute> atts;
         ArrayList<Attribute> attsRel;
         ArrayList<String> attVals;
@@ -57,6 +61,8 @@ public class HelpersQT {
 
         // 4. output data
         System.out.println(data);
+
+        return data;
 
     }
 }
