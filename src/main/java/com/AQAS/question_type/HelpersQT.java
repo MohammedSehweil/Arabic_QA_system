@@ -83,8 +83,8 @@ public class HelpersQT {
         stringToWordVector.setTFTransform(true);
 
         NGramTokenizer nGramTokenizer = new NGramTokenizer();
-        nGramTokenizer.setNGramMaxSize(minNgram);
-        nGramTokenizer.setNGramMinSize(maxNgram);
+        nGramTokenizer.setNGramMinSize(minNgram);
+        nGramTokenizer.setNGramMaxSize(maxNgram);
         nGramTokenizer.setDelimiters(" \n" + " \t.,;:'\"()?!");
         stringToWordVector.setTokenizer(nGramTokenizer);
 
