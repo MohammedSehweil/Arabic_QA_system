@@ -25,36 +25,9 @@ public class Driver {
 
 
     /**
-     * Generates the Instances object and outputs it in ARFF format to stdout.
-     *
-     * @param args ignored
-     * @throws Exception if generation of instances fails
      */
     public static void main(String[] args) throws Exception {
-
-
-
          Instances ngrammedVectores =  HelpersQT.initializeStringToWordVector();
-//
-//        int n = 2; //n-gram
-//        String[] s = "I saw the fox saw the fox".split(" ");
-//        Collection<StringList> nGrams = NGramUtils.getNGrams(new StringList(s), n);
-//        Collection<StringList> nGrams_cloned = NGramUtils.getNGrams(new StringList(s), n);
-//
-//
-//        Set<StringList> hs = new HashSet<>();
-//        hs.addAll(nGrams_cloned);
-//        nGrams_cloned.clear();
-//        nGrams_cloned.addAll(hs);
-//
-//        System.out.println(nGrams_cloned);
-//        for (StringList stringList : nGrams_cloned) {
-//            if (n == 1) {
-//                System.out.println(stringList.toString() + ": " + NGramUtils.calculateUnigramMLProbability(stringList.getToken(0), nGrams));
-//            } else if (n == 2) {
-//                System.out.println(stringList.toString() + ": " + NGramUtils.calculateNgramMLProbability(stringList, nGrams));
-//            }
-//        }
 
     }
 }
