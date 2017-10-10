@@ -33,32 +33,8 @@ public class Driver {
     public static void main(String[] args) throws Exception {
 
 
-        StringToWordVector stringToWordVector = new StringToWordVector();
-        stringToWordVector.setIDFTransform(true);
-        stringToWordVector.setTFTransform(true);
 
-        NGramTokenizer nGramTokenizer = new NGramTokenizer();
-        nGramTokenizer.setNGramMaxSize(1);
-        nGramTokenizer.setNGramMinSize(1);
-        nGramTokenizer.setDelimiters(" \n" + " \t.,;:'\"()?!");
-
-        stringToWordVector.setTokenizer(nGramTokenizer);
-
-        stringToWordVector.setAttributeIndices("review");
-        stringToWordVector.setAttributeIndices("TypeClass");
-
-        stringToWordVector.setAttributeIndices("first-last");
-        Instances data = HelpersQT.createAarfJava();
-        stringToWordVector.setInputFormat(data);
-
-        stringToWordVector.input(data.get(0));
-        stringToWordVector.input(data.get(1));
-        stringToWordVector.input(data.get(2));
-
-
-        System.out.println("**********************************");
-        Instances newData = Filter.useFilter(data, stringToWordVector);
-        System.out.println(newData);
+         Instances ngrammedVectores =  HelpersQT.initializeStringToWordVector();
 //
 //        int n = 2; //n-gram
 //        String[] s = "I saw the fox saw the fox".split(" ");
