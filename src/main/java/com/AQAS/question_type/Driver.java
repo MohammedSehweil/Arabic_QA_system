@@ -27,7 +27,7 @@ public class Driver {
     /**
      */
     public static void main(String[] args) throws Exception {
-         Instances ngrammedVectores =  HelpersQT.initializeStringToWordVector();
+        Instances ngrammedVectores = HelpersQT.initializeStringToWordVector(1, 1);
 
     }
 }

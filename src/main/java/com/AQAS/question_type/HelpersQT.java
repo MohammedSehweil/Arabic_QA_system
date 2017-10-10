@@ -77,14 +77,14 @@ public class HelpersQT {
     }
 
 
-    public static Instances initializeStringToWordVector() throws Exception {
+    public static Instances initializeStringToWordVector(int minNgram, int maxNgram) throws Exception {
         StringToWordVector stringToWordVector = new StringToWordVector();
         stringToWordVector.setIDFTransform(true);
         stringToWordVector.setTFTransform(true);
 
         NGramTokenizer nGramTokenizer = new NGramTokenizer();
-        nGramTokenizer.setNGramMaxSize(1);
-        nGramTokenizer.setNGramMinSize(1);
+        nGramTokenizer.setNGramMaxSize(minNgram);
+        nGramTokenizer.setNGramMinSize(maxNgram);
         nGramTokenizer.setDelimiters(" \n" + " \t.,;:'\"()?!");
         stringToWordVector.setTokenizer(nGramTokenizer);
 
