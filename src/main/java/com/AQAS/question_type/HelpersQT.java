@@ -5,6 +5,7 @@ import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
 import weka.core.converters.ArffLoader;
+import weka.core.converters.CSVSaver;
 import weka.core.tokenizers.NGramTokenizer;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
@@ -16,10 +17,11 @@ import java.util.ArrayList;
 public class HelpersQT {
 
 
-    public static Instances getAarfData(String FileName) throws IOException {
-//        FileName =".\\src\\main\\java\\com\\AQAS\\question_type\\t.arff"; //example
+    //example
+    // FileName =".\\src\\main\\java\\com\\AQAS\\question_type\\t.arff";
+    public static Instances getAarfData(String fileName) throws IOException {
         ArffLoader loader = new ArffLoader();
-        loader.setFile(new File(FileName));
+        loader.setFile(new File(fileName));
         Instances data = loader.getDataSet();
         data.setClassIndex(data.numAttributes() - 1);
         System.out.println(data);
@@ -56,7 +58,7 @@ public class HelpersQT {
             vals[1] = a.questionTypeIndex;
             data.add(new DenseInstance(1.0, vals));
         }
-        data.setClassIndex(data.numAttributes() - 1);
+        data.setClassIndex(data.numAttributes() - 1);//set QuestionType as the class index
         // 4. output data
         System.out.println(data);
 
@@ -96,13 +98,22 @@ public class HelpersQT {
         //getting data
         Instances data = HelpersQT.getAarfData();
         stringToWordVector.setInputFormat(data);
-        for (int i = 0; i < data.size(); i++) {
-            stringToWordVector.input(data.get(i));
-        }
+
         System.out.println("**********************************");
         Instances newData = Filter.useFilter(data, stringToWordVector);
         System.out.println(newData);
+
+        saveDatatoCsvFile(newData, null);
         return newData;
+    }
+
+    public static void saveDatatoCsvFile(Instances data, String fileName) throws IOException {
+        if (fileName == null)
+            fileName = "output.csv";
+        CSVSaver saver = new CSVSaver();
+        saver.setInstances(data);
+        saver.setFile(new File(fileName));
+        saver.writeBatch();
     }
 }
 
