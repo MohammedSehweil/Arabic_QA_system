@@ -21,6 +21,8 @@ public class FeatureVector {
 
         Instances data = null;
         if (fileType == ConfigQT.CSV_FILE) {
+
+            //TODO data is converted to feature vectors(fix this)
             CSVLoader loader = new CSVLoader();
             loader.setFile(new File(fileName));
             data = loader.getDataSet();
