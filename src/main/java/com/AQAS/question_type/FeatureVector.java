@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FeatureVector {
+
+    public static int orginalTrainingSize ;
     //example
     // FileName =".\\src\\main\\java\\com\\AQAS\\question_type\\t.arff";
     public static Instances getTrainingData(String fileName, int fileType) throws IOException {
@@ -124,6 +126,19 @@ public class FeatureVector {
         } else {
             data = FeatureVector.getTrainingData(fileName, fileType);
         }
+
+        orginalTrainingSize = data.size();
+        //adding testing question
+        double[] vals;
+        vals = new double[data.numAttributes()];
+        vals[0] = data.attribute(0).addStringValue("how are");
+        DenseInstance d = new DenseInstance(1.0, vals);
+        d.setMissing(1);
+        data.add(d);
+        System.out.println("___**************_");
+        System.out.println(data);
+
+
         stringToWordVector.setInputFormat(data);
 
         System.out.println("**********************************");

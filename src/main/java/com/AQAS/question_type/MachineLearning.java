@@ -15,10 +15,23 @@ public class MachineLearning {
     public static void initializeClassifier(Instances data) {
 
 
+
         try {
             SMO classifier = new SMO();
             data.setClassIndex(0);// set the questionType as the class index for machine learning
-            classifier.buildClassifier(data);
+
+            if (ConfigQT.BUILD_MODEL) {
+                classifier.buildClassifier(data);
+                weka.core.SerializationHelper.write(ConfigQT.MODEL_FILE_NAME, classifier);
+            } else {
+                classifier = (SMO) weka.core.SerializationHelper.read(ConfigQT.MODEL_FILE_NAME);
+            }
+
+            for (int i = FeatureVector.orginalTrainingSize; i < data.size(); i++) {
+
+                System.out.println("Classification Class is:" + classifier.classifyInstance(data.get(i)));
+            }
+
             Evaluation eval = new Evaluation(data);
             eval.crossValidateModel(classifier, data, 10, new Random(1));
 
