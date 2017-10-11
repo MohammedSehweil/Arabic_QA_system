@@ -26,7 +26,6 @@ public class QuestionPreprocessing {
         normalizedText = diacriticsRemover.removeDiacritics(normalizedText);
         normalizedText = punctuationsRemover.removePunctuations(normalizedText);
 
-        // System.out.println("Text: " + query);
         //System.out.println("Normalized text: " + normalizedText);
 
         ArabicStemmer arabicStemmer = new ArabicStemmer();
