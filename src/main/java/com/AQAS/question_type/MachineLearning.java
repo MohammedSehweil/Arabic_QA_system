@@ -12,9 +12,9 @@ import java.util.Random;
  */
 public class MachineLearning {
 
-    public static void initializeClassifier(Instances data) {
 
 
+    public static void buildClassifier(Instances data) {
 
         try {
             SMO classifier = new SMO();
@@ -36,6 +36,7 @@ public class MachineLearning {
             eval.crossValidateModel(classifier, data, 10, new Random(1));
 
             System.out.println("\nSummary:" + eval.toSummaryString());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

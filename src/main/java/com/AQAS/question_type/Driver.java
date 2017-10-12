@@ -3,12 +3,20 @@ package com.AQAS.question_type;
 
 import weka.core.Instances;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.AQAS.question_type.HelpersQT.getQuestionTypeUsingSVM;
+
 public class Driver {
 
 
     public static void main(String[] args) throws Exception {
-        Instances ngrammedVectores = FeatureVector.initializeStringToWordVector(1, 1, ConfigQT.ARFF_FILE,  "C:\\Users\\the-m\\Desktop\\training.arff", "output.csv");
+        ArrayList<String> testingQuestions = new ArrayList<String>(Arrays.asList(
+                "how are",
+                "my maher"
+        ));
 
-        MachineLearning.initializeClassifier(ngrammedVectores);
+        getQuestionTypeUsingSVM(testingQuestions);
     }
 }

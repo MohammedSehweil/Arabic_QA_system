@@ -1,0 +1,30 @@
+@RELATION	BookReviews
+
+@ATTRIBUTE	'question'	string
+@ATTRIBUTE	'QuestionType'	{0,1, 2}
+
+@DATA
+" my name"	, 0
+" name is maher"	, 1
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2
+" how are you"	, 2

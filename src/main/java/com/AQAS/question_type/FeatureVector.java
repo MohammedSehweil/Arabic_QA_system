@@ -12,7 +12,9 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FeatureVector {
 
@@ -54,9 +56,7 @@ public class FeatureVector {
         atts.add(new Attribute("question", (ArrayList<String>) null));
         // - nominal
         attVals = new ArrayList<String>();
-        attVals.add(ConfigQT.QT_NUMERIC_TEXT);
-        attVals.add(ConfigQT.QT_LIST_TEXT);
-        attVals.add(ConfigQT.QT_PARAGRAPH_TEXT);
+        attVals.addAll(Arrays.asList(ConfigQT.QT_texts));
         atts.add(new Attribute("QuestionType", attVals));
 
 
@@ -102,39 +102,49 @@ public class FeatureVector {
         return ret;
     }
 
-
-    public static Instances initializeStringToWordVector(int minNgram, int maxNgram, int fileType, String fileName, String outputFile) throws Exception {
+    private static StringToWordVector _initializeStringToWordVector(){
         StringToWordVector stringToWordVector = new StringToWordVector();
         stringToWordVector.setIDFTransform(true);
         stringToWordVector.setTFTransform(true);
 
         NGramTokenizer nGramTokenizer = new NGramTokenizer();
-        nGramTokenizer.setNGramMinSize(minNgram);
-        nGramTokenizer.setNGramMaxSize(maxNgram);
+        nGramTokenizer.setNGramMinSize(ConfigQT.MIN_NGRAM);
+        nGramTokenizer.setNGramMaxSize(ConfigQT.MAX_NGRAM);
         nGramTokenizer.setDelimiters(" \n" + " \t.,;:'\"()?!");
         stringToWordVector.setTokenizer(nGramTokenizer);
 
 
-        stringToWordVector.setAttributeIndices("review");
+        stringToWordVector.setAttributeIndices("question");
         stringToWordVector.setAttributeIndices("TypeClass");
         stringToWordVector.setAttributeIndices("first-last");
 
+        return stringToWordVector;
+
+    }
+
+
+    public static Instances applyFilterOnData(  ArrayList<String> testingQuestions) throws Exception {
+
+        StringToWordVector stringToWordVector = _initializeStringToWordVector();
         Instances data = null;
+        int fileType = ConfigQT.FILE_TYPE;
         //getting data
         if (fileType == ConfigQT.MANUALLY_DATA) {
             data = FeatureVector.getTrainingData();
         } else {
-            data = FeatureVector.getTrainingData(fileName, fileType);
+            data = FeatureVector.getTrainingData(ConfigQT.TRAINING_INPUT_FILE, fileType);
         }
 
         orginalTrainingSize = data.size();
-        //adding testing question
-        double[] vals;
-        vals = new double[data.numAttributes()];
-        vals[0] = data.attribute(0).addStringValue("how are");
-        DenseInstance d = new DenseInstance(1.0, vals);
-        d.setMissing(1);
-        data.add(d);
+        //adding testing questions
+        for (String testingQuestion:testingQuestions) {
+            double[] vals;
+            vals = new double[data.numAttributes()];
+            vals[0] = data.attribute(0).addStringValue(testingQuestion);
+            DenseInstance d = new DenseInstance(1.0, vals);
+            d.setMissing(1);
+            data.add(d);
+        }
         System.out.println("___**************_");
         System.out.println(data);
 
@@ -142,12 +152,12 @@ public class FeatureVector {
         stringToWordVector.setInputFormat(data);
 
         System.out.println("**********************************");
-        Instances newData = Filter.useFilter(data, stringToWordVector);
-        newData.setClassIndex(0);// set the questionType as the class index for machine learning
-        System.out.println(newData);
+        Instances filteredData = Filter.useFilter(data, stringToWordVector);
+        filteredData.setClassIndex(0);// set the questionType as the class index for machine learning
+        System.out.println(filteredData);
 
-        saveDatatoCsvFile(newData, outputFile);
-        return newData;
+        saveDatatoCsvFile(filteredData, ConfigQT.FILTERED_DATA_FILE);
+        return filteredData;
     }
 
     public static void saveDatatoCsvFile(Instances data, String fileName) throws IOException {
