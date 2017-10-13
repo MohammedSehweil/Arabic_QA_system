@@ -27,15 +27,14 @@ public class MachineLearning {
                 classifier = (SMO) weka.core.SerializationHelper.read(ConfigQT.MODEL_FILE_NAME);
             }
 
-            for (int i = FeatureVector.orginalTrainingSize; i < data.size(); i++) {
-
-                System.out.println("Classification Class is:" + classifier.classifyInstance(data.get(i)));
+            for (int i = FeatureVector.originalTrainingSize; i < data.size(); i++) {
+                System.out.println("Classification Class is:" + ConfigQT.QT_texts[(int)classifier.classifyInstance(data.get(i))]);
             }
 
             Evaluation eval = new Evaluation(data);
-            eval.crossValidateModel(classifier, data, 10, new Random(1));
+            eval.crossValidateModel(classifier, data, 10, new Random(System.currentTimeMillis()));
 
-            System.out.println("\nSummary:" + eval.toSummaryString());
+            System.out.println("\n(k-folds results):" + eval.toSummaryString());
 
         } catch (Exception e) {
             e.printStackTrace();

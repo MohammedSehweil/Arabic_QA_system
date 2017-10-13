@@ -1,5 +1,8 @@
 package com.AQAS.question_type;
 
+import com.AQAS.Database.Form;
+import com.AQAS.Database.Question;
+import com.AQAS.question_processessing.QuestionPreprocessing;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
@@ -12,13 +15,13 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FeatureVector {
 
-    public static int orginalTrainingSize ;
+    public static int originalTrainingSize;
+
     //example
     // FileName =".\\src\\main\\java\\com\\AQAS\\question_type\\t.arff";
     public static Instances getTrainingData(String fileName, int fileType) throws IOException {
@@ -36,7 +39,6 @@ public class FeatureVector {
             data = loader.getDataSet();
         }
         data.setClassIndex(data.numAttributes() - 1);
-        System.out.println(data);
         return data;
     }
 
@@ -63,46 +65,36 @@ public class FeatureVector {
         // 2. create Instances object
         data = new Instances("MyRelation", atts, 0);
         // 3. fill with data
-        ArrayList<arffEntry> inputData = getDataManually();
-        for (arffEntry a : inputData) {
+        ArrayList<instanceOneRow> inputData = getDataManually();
+        for (instanceOneRow a : inputData) {
             vals = new double[data.numAttributes()];
             vals[0] = data.attribute(0).addStringValue(a.text);
             vals[1] = a.questionTypeIndex;
             data.add(new DenseInstance(1.0, vals));
         }
         data.setClassIndex(data.numAttributes() - 1);//set QuestionType as the class index
-        // 4. output data
-        System.out.println(data);
 
         return data;
 
     }
 
-    private static ArrayList<arffEntry> getDataManually() {
+    private static ArrayList<instanceOneRow> getDataManually() {
 
-        ArrayList<arffEntry> ret = new ArrayList<arffEntry>();
+        ArrayList<instanceOneRow> ret = new ArrayList<instanceOneRow>();
 
-        //TODO: this is dummy data, we have to add it from training data
-        ret.add(new arffEntry("my name is maher", ConfigQT.QT_NUMERIC));
-        ret.add(new arffEntry("my name is ziad", ConfigQT.QT_LIST));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
-        ret.add(new arffEntry("my name is aseel", ConfigQT.QT_PARAGRAPH));
+        //loading data from Database package
+        for (Question question : ConfigQT.trainingQuestions) {
+            int questionType = question.questionType;
+            for (Form form : question.forms) {
+                String preprocessedFormText = QuestionPreprocessing.preProcessInput(form.text).get(ConfigQT.textInputPreprcessedKey);
+                ret.add(new instanceOneRow(preprocessedFormText, questionType));
+            }
+        }
 
         return ret;
     }
 
-    private static StringToWordVector _initializeStringToWordVector(){
+    private static StringToWordVector _initializeStringToWordVector() {
         StringToWordVector stringToWordVector = new StringToWordVector();
         stringToWordVector.setIDFTransform(true);
         stringToWordVector.setTFTransform(true);
@@ -123,7 +115,7 @@ public class FeatureVector {
     }
 
 
-    public static Instances applyFilterOnData(  ArrayList<String> testingQuestions) throws Exception {
+    public static Instances applyFilterOnData(ArrayList<String> testingQuestions) throws Exception {
 
         StringToWordVector stringToWordVector = _initializeStringToWordVector();
         Instances data = null;
@@ -135,9 +127,11 @@ public class FeatureVector {
             data = FeatureVector.getTrainingData(ConfigQT.TRAINING_INPUT_FILE, fileType);
         }
 
-        orginalTrainingSize = data.size();
+        originalTrainingSize = data.size();
         //adding testing questions
-        for (String testingQuestion:testingQuestions) {
+        for (String testingQuestion : testingQuestions) {
+
+            testingQuestion = QuestionPreprocessing.preProcessInput(testingQuestion).get(ConfigQT.textInputPreprcessedKey);
             double[] vals;
             vals = new double[data.numAttributes()];
             vals[0] = data.attribute(0).addStringValue(testingQuestion);
@@ -145,18 +139,25 @@ public class FeatureVector {
             d.setMissing(1);
             data.add(d);
         }
-        System.out.println("___**************_");
-        System.out.println(data);
+
+        if(ConfigQT.VERBOS){
+            System.out.println("*******Original Data is*******");
+            System.out.println(data);
+        }
 
 
         stringToWordVector.setInputFormat(data);
 
-        System.out.println("**********************************");
         Instances filteredData = Filter.useFilter(data, stringToWordVector);
         filteredData.setClassIndex(0);// set the questionType as the class index for machine learning
-        System.out.println(filteredData);
 
-        saveDatatoCsvFile(filteredData, ConfigQT.FILTERED_DATA_FILE);
+        if(ConfigQT.VERBOS) {
+            System.out.println("*******Data after filtering*******");
+            System.out.println(filteredData);
+        }
+        if(ConfigQT.save_filtered_data_to_csv){
+            saveDatatoCsvFile(filteredData,ConfigQT.packagePath +  ConfigQT.FILTERED_DATA_FILE);
+        }
         return filteredData;
     }
 
@@ -170,11 +171,11 @@ public class FeatureVector {
     }
 }
 
-class arffEntry {
+class instanceOneRow {
     String text;
     int questionTypeIndex;
 
-    public arffEntry(String text, int questionType) {
+    public instanceOneRow(String text, int questionType) {
         this.text = text;
         this.questionTypeIndex = questionType;
     }

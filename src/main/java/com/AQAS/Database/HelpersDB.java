@@ -20,7 +20,7 @@ public class HelpersDB {
 
     public static void storeTestingData() throws IOException {
         intializeProb();
-        for (Question question : ConfigDB.testingQuestions) {
+        for (Question question : ConfigDB.trainingQuestions) {
             int question_id = question.store();
             for (Form form : question.forms) {
                 form.text = QuestionPreprocessing.preProcessInput(form.text).get(ConfigP.Keys.NormalizedText);

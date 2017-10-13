@@ -10,14 +10,19 @@ import static com.AQAS.Database.HelpersDB.props;
 
 public class Question {
 
-    int id;
-    String text;
-    ArrayList<Form> forms;
-
+    public int id;
+    public String text;
+    public ArrayList<Form> forms;
+    public int questionType;
 
     public Question(String text, ArrayList<Form> forms) {
         this.text = text;
         this.forms = forms;
+    }
+    public Question(String text, ArrayList<Form> forms, int questionType) {
+        this.text = text;
+        this.forms = forms;
+        this.questionType = questionType;
     }
 
     public int store() {

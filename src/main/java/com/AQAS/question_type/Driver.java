@@ -13,8 +13,8 @@ public class Driver {
 
     public static void main(String[] args) throws Exception {
         ArrayList<String> testingQuestions = new ArrayList<String>(Arrays.asList(
-                "how are",
-                "my maher"
+                "كم مدة علاج السعال",
+                "ما هي أعراض السعال"
         ));
 
         getQuestionTypeUsingSVM(testingQuestions);

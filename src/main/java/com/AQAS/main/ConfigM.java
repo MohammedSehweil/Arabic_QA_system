@@ -2,6 +2,7 @@ package com.AQAS.main;
 
 public final class ConfigM {
 
+    public static final String packagePath = ".\\src\\main\\java\\com\\AQAS\\main\\";
 
     public final class Keys {
     }
