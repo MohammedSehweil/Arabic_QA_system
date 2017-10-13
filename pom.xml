@@ -77,5 +77,11 @@
             <version>6.0.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>KPMiner</groupId>
+            <artifactId>KPMiner</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 </project>
