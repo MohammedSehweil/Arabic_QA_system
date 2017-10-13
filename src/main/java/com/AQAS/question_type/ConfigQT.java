@@ -38,10 +38,10 @@ public final class ConfigQT {
     //FeatureVector filter parameters
     public static final int MIN_NGRAM = 2;
     public static final int MAX_NGRAM = 2;
-    public static final String TRAINING_INPUT_FILE = "test_files\\training.arff";
+    public static final String TRAINING_INPUT_FILE = ConfigQT.packagePath + "test_files\\training.arff";
 
     public static final boolean save_filtered_data_to_csv = false;
-    public static final String FILTERED_DATA_FILE = "filtered_data.csv";
+    public static final String FILTERED_DATA_FILE = ConfigQT.packagePath + "filtered_data.csv";
 
     //config to choose which dataset to use for training
     public static  final ArrayList<Question> trainingQuestions = ConfigDB.normalArabicDataSet;

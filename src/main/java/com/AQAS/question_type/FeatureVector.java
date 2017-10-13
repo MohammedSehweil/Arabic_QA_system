@@ -7,6 +7,7 @@ import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instances;
 import weka.core.converters.ArffLoader;
+import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
 import weka.core.converters.CSVSaver;
 import weka.core.tokenizers.NGramTokenizer;
@@ -168,6 +169,17 @@ public class FeatureVector {
         saver.setInstances(data);
         saver.setFile(new File(fileName));
         saver.writeBatch();
+
+    }
+
+    public static void saveDatatoArffFile(Instances data, String fileName) throws IOException {
+        if (fileName == null)
+            fileName = "output.arff";
+        ArffSaver saver = new ArffSaver();
+        saver.setInstances(data);
+        saver.setFile(new File(fileName));
+        saver.writeBatch();
+
     }
 }
 
