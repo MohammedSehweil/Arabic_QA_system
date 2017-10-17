@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 public final class ConfigD {
 
+    public static final String packagePath = ".\\src\\main\\java\\com\\AQAS\\document_retrieval\\";
+
     public final class Keys {
         public static final String searchQuery = "searchQuery";
         public static final String searchNumOfPages = "searchNumOfPages";

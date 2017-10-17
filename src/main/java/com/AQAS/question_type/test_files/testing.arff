@@ -1,0 +1,7 @@
+@RELATION	BookReviews
+
+@ATTRIBUTE	'question'	string
+@ATTRIBUTE	'TypeClass'	{0,1, 2}
+
+@DATA
+" ما هي اعراض الزكام"	, ?

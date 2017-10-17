@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.AQAS.document_retrieval.HelpersD.driver;
+import static com.AQAS.document_retrieval.HelpersD.openWebDriver;
 import static com.AQAS.document_retrieval.HelpersD.removeDuplicatesFromDocumentLinks;
 
 public class DocumentRetrieval {
@@ -35,7 +36,12 @@ public class DocumentRetrieval {
      * @param URL
      */
     public static String retrieveDocumentText(String URL , String contentSelector) {
-        driver.get(URL);
+        try {
+            driver.get(URL);
+        }catch (Exception e){
+            openWebDriver();
+            driver.get(URL);
+        }
         try {
             WebElement showMoreButton = driver.findElement(By.className("showMore"));
             showMoreButton.click();

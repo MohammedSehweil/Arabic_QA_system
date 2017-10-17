@@ -6,6 +6,7 @@ import com.AQAS.document_retrieval.DocumentRetrieval;
 import com.AQAS.document_retrieval.Website_Document;
 import com.AQAS.question_processessing.QuestionPreprocessing;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +19,7 @@ public class HelpersM {
     }
 
 
-    public static Form retrieveDocuments(String query_string) {
+    public static Form retrieveDocuments(String query_string) throws IOException {
         HashMap<String, String> out = QuestionPreprocessing.preProcessInput(ConfigM.query);
 
         Form form = new Form(query_string);
