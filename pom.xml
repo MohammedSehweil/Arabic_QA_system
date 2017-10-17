@@ -87,11 +87,12 @@
             <artifactId>weka-stable</artifactId>
             <version>3.8.0</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>KPMiner</groupId>-->
-            <!--<artifactId>KPMiner</artifactId>-->
-            <!--<version>1.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>KPMiner</groupId>
+            <artifactId>KPMiner</artifactId>
+            <version>1.0</version>
+            <systemPath>${basedir}/src/main/java/com/AQAS/keyphrase_extraction/kpminer-10.jar</systemPath>
+        </dependency>
 
 
     </dependencies>

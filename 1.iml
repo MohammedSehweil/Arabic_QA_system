@@ -18,6 +18,15 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/java/com/AQAS/keyphrase_extraction/kpminer-10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.10.3" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-java:3.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-api:3.5.3" level="project" />
@@ -117,16 +126,6 @@
     <orderEntry type="library" name="Maven: net.sourceforge.f2j:arpack_combined_all:0.1" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.netlib-java:netlib-java:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.fommil.netlib:core:1.1" level="project" />
-
-     <orderEntry type="module-library">
-             <library>
-               <CLASSES>
-                 <root url="jar://$MODULE_DIR$/src/main/java/com/AQAS/keyphrase_extraction/kpminer-10.jar!/" />
-               </CLASSES>
-               <JAVADOC />
-               <SOURCES />
-             </library>
-       </orderEntry>
-
+    <orderEntry type="library" name="Maven: KPMiner:KPMiner:1.0" level="project" />
   </component>
 </module>
