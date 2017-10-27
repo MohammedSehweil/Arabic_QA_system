@@ -12,7 +12,7 @@ public class Driver {
         keyphraseExtraction kp = new keyphraseExtraction();
         Extractor extractor = new Extractor();
         extractor.init();
-        String [] topKeys = extractor.getTopN(3,"أعراض مرض السكري و أسبابه و سبل الوقاية منه",true);
+        String [] topKeys = extractor.getTopN(20,"أعراض مرض السكري و أسبابه و سبل الوقاية منه",true);
 //        String[] topNkeys = kp.keyphraseInput(1,"What is the reason that cause cancer",false);
 
         for(int i = 0; i<topKeys.length; i++){
