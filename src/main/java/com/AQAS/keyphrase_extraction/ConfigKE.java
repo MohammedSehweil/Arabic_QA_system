@@ -8,5 +8,6 @@ public final class ConfigKE {
     }
 
     public static final boolean VERBOS = true;
+    public static final int KP_NUMBER = 20;
 
 }

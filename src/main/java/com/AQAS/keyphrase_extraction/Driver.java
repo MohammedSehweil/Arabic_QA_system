@@ -10,9 +10,8 @@ public class Driver {
     // execution starts here
     public static void main(String[] args) {
         keyphraseExtraction kp = new keyphraseExtraction();
-        Extractor extractor = new Extractor();
-        extractor.init();
-        String [] topKeys = extractor.getTopN(20,"أعراض مرض السكري و أسبابه و سبل الوقاية منه",true);
+
+        String [] topKeys = HelpersKE.getKeyPhrases("أعراض مرض السكري و أسبابه و سبل الوقاية منه");
 //        String[] topNkeys = kp.keyphraseInput(1,"What is the reason that cause cancer",false);
 
         for(int i = 0; i<topKeys.length; i++){
