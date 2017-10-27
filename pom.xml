@@ -47,10 +47,7 @@
             <version>3.0.1-incubating</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/edu.stanford.nlp/stanford-pos-tagger -->
-        <dependency>
-            <groupId>edu.stanford.nlp</groupId>
-            <artifactId>stanford-pos-tagger</artifactId>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/edu.stanford.nlp/stanford-corenlp -->
         <dependency>
             <groupId>edu.stanford.nlp</groupId>
@@ -88,12 +85,15 @@
             <version>3.8.0</version>
         </dependency>
         <dependency>
-            <groupId>KPMiner</groupId>
-            <artifactId>KPMiner</artifactId>
+            <groupId>OurKPminer</groupId>
+            <artifactId>OurKPminer</artifactId>
             <version>1.0</version>
             <systemPath>${basedir}/src/main/java/com/AQAS/keyphrase_extraction/kpminer-10.jar</systemPath>
         </dependency>
-
-
+        <dependency>
+            <groupId>net.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

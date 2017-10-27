@@ -36,7 +36,7 @@ public final class ConfigQT {
 
 
     //FeatureVector filter parameters
-    public static final int MIN_NGRAM = 2;
+    public static final int MIN_NGRAM = 1;
     public static final int MAX_NGRAM = 2;
     public static final String TRAINING_INPUT_FILE = ConfigQT.packagePath + "test_files\\training.arff";
 
