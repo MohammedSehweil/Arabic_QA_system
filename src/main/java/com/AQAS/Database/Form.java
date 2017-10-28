@@ -1,5 +1,6 @@
 package com.AQAS.Database;
 
+import com.AQAS.Document_ranking.ConfigDR;
 import com.AQAS.document_retrieval.ConfigD;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.simple.JSONArray;
@@ -77,6 +78,15 @@ public class Form {
             return null;
         }
     }
+
+    public void removeIrrelevantDocuments() {
+        for (Iterator<Document> document = documents.iterator(); document.hasNext(); ) {
+            if (document.next().overAllRank() < ConfigDR.RELEVANCY_THRESHOLD) {
+                document.remove();
+            }
+        }
+    }
+
 
     @Override
     public String toString() {

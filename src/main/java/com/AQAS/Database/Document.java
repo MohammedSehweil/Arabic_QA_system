@@ -56,16 +56,19 @@ public class Document implements Comparable<Document> {
         }
     }
 
+    public double overAllRank(){
+        return this.contentRank;
+    }
     @Override
     public String toString() {
         return "Document{" +
                 "id=" + id +
-                ", link='" + link + '\'' +
+//                ", link='" + link + '\'' +
 //                ", text='" + text + '\'' +
                 ", form_id=" + form_id +
                 ", urlRank=" + urlRank +
                 ", contentRank=" + contentRank +
-                '}';
+                '}' + '\n';
     }
 
     /*
