@@ -27,6 +27,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: edu.stanford.nlp:stanford-pos-tagger:unknown" level="project" />
+    <orderEntry type="library" name="Maven: KPMiner:KPMiner:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.10.3" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-java:3.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-api:3.5.3" level="project" />
