@@ -45,7 +45,7 @@ public class FeatureVector {
 
 
     //get data manually
-    public static Instances getTrainingData() {
+    public static Instances getTrainingData() throws IOException{
 
         //reference https://codereview.stackexchange.com/questions/160027/convert-java-data-to-weka-friendly-format-without-using-arff
         ArrayList<Attribute> atts;
@@ -79,7 +79,7 @@ public class FeatureVector {
 
     }
 
-    private static ArrayList<instanceOneRow> getDataManually() {
+    private static ArrayList<instanceOneRow> getDataManually() throws IOException {
 
         ArrayList<instanceOneRow> ret = new ArrayList<instanceOneRow>();
 

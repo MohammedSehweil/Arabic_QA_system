@@ -18,6 +18,17 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/java/com/AQAS/keyphrase_extraction/kpminer-10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: edu.stanford.nlp:stanford-pos-tagger:unknown" level="project" />
+    <orderEntry type="library" name="Maven: KPMiner:KPMiner:1.0" level="project" />
     <orderEntry type="library" name="Maven: OurKPminer:OurKPminer:1.0" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.10.3" level="project" />
