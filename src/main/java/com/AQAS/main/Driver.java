@@ -9,9 +9,7 @@ import com.AQAS.question_processessing.HelpersP;
 import com.AQAS.question_processessing.QuestionPreprocessing;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 import static com.AQAS.Database.HelpersDB.intializeProb;
 import static com.AQAS.Database.HelpersDB.storeTestingData;
@@ -30,12 +28,17 @@ public class Driver {
             storeTestingData();
         }
 
-        getQuestionTypeUsingSVM(new ArrayList<>(Arrays.asList(ConfigM.query)));
+//        getQuestionTypeUsingSVM(new ArrayList<>(Arrays.asList(ConfigM.query)));
 
 
-//        Form form = retrieveDocuments(ConfigM.query);
+        Form form = retrieveDocuments(ConfigM.query);
+//
+        System.out.println("Before ranking: "+form);
 
-//        System.out.println(form);
+        Collections.sort(form.documents);
+
+        System.out.println("After ranking: "+form);
+
 
         closeWebDriver();
     }

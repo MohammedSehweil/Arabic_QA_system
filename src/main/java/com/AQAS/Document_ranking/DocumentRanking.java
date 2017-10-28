@@ -11,6 +11,7 @@ public class DocumentRanking {
     public static double getDocumentRank(String document, String query) {
 
         double rank = 0;
+
         String[] keyPhrases = HelpersKE.getKeyPhrases(query);
 
         HashMap<String, Double> keyPhrasesFrequencies = HelpersDR.getWordsFreqInDoc(keyPhrases, document);
@@ -24,8 +25,11 @@ public class DocumentRanking {
             int keyPhraseLength = HelpersDR.getSentenceWordsCount(keyPhrase);
             double properNameScore = getProperNameScore(keyPhrase);
             keyPhraseScore = keyPhraseFreq * Math.sqrt(keyPhraseLength) * properNameScore;
-
+//            System.out.println(keyPhrase + " " + keyPhraseFreq + " " +  Math.sqrt(keyPhraseLength)  + " " +  properNameScore);
             keyPhrasesScore += keyPhraseScore;
+        }
+        if(keyPhrasesScore == 0){
+            return  cosineSimilarity;
         }
 
         return keyPhrasesScore * cosineSimilarity;

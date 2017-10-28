@@ -2,13 +2,16 @@ package com.AQAS.main;
 
 import com.AQAS.Database.Document;
 import com.AQAS.Database.Form;
+import com.AQAS.Document_ranking.DocumentRanking;
 import com.AQAS.document_retrieval.DocumentRetrieval;
 import com.AQAS.document_retrieval.Website_Document;
 import com.AQAS.question_processessing.QuestionPreprocessing;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class HelpersM {
 
@@ -20,7 +23,7 @@ public class HelpersM {
 
 
     public static Form retrieveDocuments(String query_string) throws IOException {
-        HashMap<String, String> out = QuestionPreprocessing.preProcessInput(ConfigM.query);
+        HashMap<String, String> out = QuestionPreprocessing.preProcessInput(query_string);
 
         Form form = new Form(query_string);
         ArrayList<Website_Document> website_documents = DocumentRetrieval.getLinksOfAllWebsitesByQuery(form.text, ConfigM.searchNumOfPages);
@@ -31,12 +34,17 @@ public class HelpersM {
         }
 
         for (Website_Document website_document : website_documents) {
+            int urlOrder = 1;
             for (String url : website_document.DocumentLinks) {
                 if (ConfigM.VERBOS) {
                     System.out.println("Link is :" + url);
                 }
                 String text = DocumentRetrieval.retrieveDocumentText(url , website_document.websiteContentSelector);
-                form.documents.add(new Document(url, text));
+                double contentRank = DocumentRanking.getDocumentRank(text,query_string);
+                System.out.println("CR=>"+contentRank);
+                //new Logger("log");
+                form.documents.add(new Document(url, text,urlOrder++,contentRank));
+
             }
         }
         return form;
