@@ -3,6 +3,7 @@ package com.AQAS.Document_ranking;
 
 import com.AQAS.Document_ranking.stringsimilarity.Cosine;
 
+import java.io.IOException;
 import java.util.Map;
 
 import com.AQAS.keyphrase_extraction.HelpersKE;
@@ -15,7 +16,7 @@ import static com.AQAS.Document_ranking.DocumentRanking.getDocumentRank;
 
 public class Driver {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         String query = "أعراض مرض السكري و أسبابه و سبل الوقاية منه";
         query = QuestionPreprocessing.preProcessInput(query).get(ConfigP.Keys.NormalizedText);
