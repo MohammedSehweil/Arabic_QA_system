@@ -8,7 +8,7 @@ public class Driver {
     public static void main(String arg[])
     {
 
-        StanfordPOS pos = new StanfordPOS("ما هي أعراض مرض السكري");
+        StanfordPOS pos = new StanfordPOS("ما هي أعراض مرض السكري مدرسة امريكا فلسطين محمد اسيل يقتل ينتقد هرب من المشاكل");
         ArrayList<Pair<String,String>> returnPOS = pos.tokenPOS();
 
         for(int i =0; i< returnPOS.size(); i++){
